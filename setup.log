@@ -1,0 +1,1681 @@
+===========================================
+Lorekeeper Docker Setup
+===========================================
+
+⚠️  .env file already exists, skipping...
+📁 Creating necessary directories...
+✅ Directories created
+🔨 Building Docker images...
+time="2025-11-25T22:08:41+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+#1 [internal] load local bake definitions
+#1 reading from stdin 575B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.10kB done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/php:8.1-fpm
+#3 ...
+
+#4 [internal] load metadata for docker.io/library/composer:2
+#4 DONE 1.1s
+
+#3 [internal] load metadata for docker.io/library/php:8.1-fpm
+#3 DONE 1.1s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 225B done
+#5 DONE 0.0s
+
+#6 [stage-0 1/8] FROM docker.io/library/php:8.1-fpm@sha256:d0e9f330031816ec71ce0b3c5ecfaf968e15060181811c7ff20c9ad6364e5f29
+#6 DONE 0.0s
+
+#7 FROM docker.io/library/composer:2@sha256:8f3b7d97cd7436dae41d6af0dd6a53853779040ecac26e65544fc31746035705
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 70.95kB 0.0s done
+#8 DONE 0.1s
+
+#9 [stage-0 2/8] WORKDIR /var/www/html
+#9 CACHED
+
+#10 [stage-0 3/8] RUN apt-get update && apt-get install -y     git     curl     libpng-dev     libonig-dev     libxml2-dev     zip     unzip     libzip-dev     libfreetype6-dev     libjpeg62-turbo-dev     libwebp-dev     libxpm-dev     default-mysql-client     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [stage-0 4/8] RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+#11 CACHED
+
+#12 [stage-0 5/8] COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+#12 CACHED
+
+#13 [stage-0 6/8] COPY . /var/www/html
+#13 DONE 0.6s
+
+#14 [stage-0 7/8] RUN chown -R www-data:www-data /var/www/html     && chmod -R 755 /var/www/html/storage     && chmod -R 755 /var/www/html/bootstrap/cache
+#14 DONE 0.7s
+
+#15 [stage-0 8/8] RUN composer install --no-dev --optimize-autoloader --no-interaction
+#15 0.461 No composer.lock file present. Updating dependencies to latest instead of installing from lock file. See https://getcomposer.org/install for more information.
+#15 0.461 Loading composer repositories with package information
+#15 6.903 Updating dependencies
+#15 6.975 Lock file operations: 128 installs, 0 updates, 0 removals
+#15 6.975   - Locking beyondcode/laravel-dump-server (1.9.0)
+#15 6.975   - Locking boxconnect/deviant-php (dev-master a9a56bb)
+#15 6.975   - Locking brick/math (0.13.1)
+#15 6.975   - Locking carbonphp/carbon-doctrine-types (1.0.0)
+#15 6.975   - Locking dflydev/dot-access-data (v3.0.3)
+#15 6.975   - Locking doctrine/cache (2.2.0)
+#15 6.975   - Locking doctrine/dbal (2.13.9)
+#15 6.975   - Locking doctrine/deprecations (1.1.5)
+#15 6.975   - Locking doctrine/event-manager (1.2.0)
+#15 6.975   - Locking doctrine/inflector (2.1.0)
+#15 6.975   - Locking doctrine/instantiator (2.0.0)
+#15 6.975   - Locking doctrine/lexer (1.2.3)
+#15 6.975   - Locking dragonmantank/cron-expression (v3.5.0)
+#15 6.975   - Locking egulias/email-validator (2.1.25)
+#15 6.975   - Locking erusev/parsedown (1.7.4)
+#15 6.975   - Locking ezyang/htmlpurifier (v4.19.0)
+#15 6.975   - Locking facade/ignition-contracts (1.0.2)
+#15 6.975   - Locking fideloper/proxy (4.4.2)
+#15 6.975   - Locking filp/whoops (2.18.4)
+#15 6.975   - Locking firebase/php-jwt (v6.11.1)
+#15 6.975   - Locking fzaninotto/faker (v1.5.0)
+#15 6.975   - Locking graham-campbell/result-type (v1.1.3)
+#15 6.975   - Locking guzzlehttp/guzzle (7.10.0)
+#15 6.975   - Locking guzzlehttp/promises (2.3.0)
+#15 6.975   - Locking guzzlehttp/psr7 (2.8.0)
+#15 6.975   - Locking hamcrest/hamcrest-php (v2.1.1)
+#15 6.975   - Locking intervention/image (2.7.2)
+#15 6.975   - Locking laracasts/flash (3.2.4)
+#15 6.975   - Locking laravel/framework (8.x-dev 863d928)
+#15 6.975   - Locking laravel/helpers (v1.8.1)
+#15 6.975   - Locking laravel/serializable-closure (v1.3.7)
+#15 6.975   - Locking laravel/socialite (v5.23.1)
+#15 6.975   - Locking laravel/tinker (v2.10.1)
+#15 6.975   - Locking laravel/ui (v3.4.6)
+#15 6.975   - Locking laravelcollective/html (v6.4.1)
+#15 6.975   - Locking league/commonmark (2.7.1)
+#15 6.975   - Locking league/config (v1.2.0)
+#15 6.975   - Locking league/flysystem (1.1.10)
+#15 6.975   - Locking league/mime-type-detection (1.16.0)
+#15 6.975   - Locking league/oauth1-client (v1.11.0)
+#15 6.975   - Locking mockery/mockery (1.6.12)
+#15 6.975   - Locking monolog/monolog (2.10.0)
+#15 6.975   - Locking myclabs/deep-copy (1.13.4)
+#15 6.975   - Locking nesbot/carbon (2.73.0)
+#15 6.975   - Locking nette/schema (v1.3.3)
+#15 6.975   - Locking nette/utils (v4.0.9)
+#15 6.975   - Locking nikic/php-parser (v5.6.2)
+#15 6.975   - Locking nunomaduro/collision (v5.11.0)
+#15 6.976   - Locking opis/closure (3.7.0)
+#15 6.976   - Locking paragonie/constant_time_encoding (v3.1.3)
+#15 6.976   - Locking paragonie/random_compat (v9.99.100)
+#15 6.976   - Locking phar-io/manifest (2.0.4)
+#15 6.976   - Locking phar-io/version (3.2.1)
+#15 6.976   - Locking phpoption/phpoption (1.9.4)
+#15 6.976   - Locking phpseclib/phpseclib (3.0.47)
+#15 6.976   - Locking phpunit/php-code-coverage (9.2.32)
+#15 6.976   - Locking phpunit/php-file-iterator (3.0.6)
+#15 6.976   - Locking phpunit/php-invoker (3.1.1)
+#15 6.976   - Locking phpunit/php-text-template (2.0.4)
+#15 6.976   - Locking phpunit/php-timer (5.0.3)
+#15 6.976   - Locking phpunit/phpunit (9.6.29)
+#15 6.976   - Locking psr/clock (1.0.0)
+#15 6.976   - Locking psr/container (1.1.2)
+#15 6.976   - Locking psr/event-dispatcher (1.0.0)
+#15 6.976   - Locking psr/http-client (1.0.3)
+#15 6.976   - Locking psr/http-factory (1.1.0)
+#15 6.976   - Locking psr/http-message (2.0)
+#15 6.976   - Locking psr/log (2.0.0)
+#15 6.976   - Locking psr/simple-cache (1.0.1)
+#15 6.976   - Locking psy/psysh (v0.12.14)
+#15 6.976   - Locking ralouphie/getallheaders (3.0.3)
+#15 6.976   - Locking ramsey/collection (2.1.1)
+#15 6.976   - Locking ramsey/uuid (4.9.1)
+#15 6.976   - Locking sebastian/cli-parser (1.0.2)
+#15 6.976   - Locking sebastian/code-unit (1.0.8)
+#15 6.976   - Locking sebastian/code-unit-reverse-lookup (2.0.3)
+#15 6.976   - Locking sebastian/comparator (4.0.9)
+#15 6.976   - Locking sebastian/complexity (2.0.3)
+#15 6.976   - Locking sebastian/diff (4.0.6)
+#15 6.976   - Locking sebastian/environment (5.1.5)
+#15 6.976   - Locking sebastian/exporter (4.0.8)
+#15 6.976   - Locking sebastian/global-state (5.0.8)
+#15 6.976   - Locking sebastian/lines-of-code (1.0.4)
+#15 6.976   - Locking sebastian/object-enumerator (4.0.4)
+#15 6.976   - Locking sebastian/object-reflector (2.0.4)
+#15 6.976   - Locking sebastian/recursion-context (4.0.6)
+#15 6.976   - Locking sebastian/resource-operations (3.0.4)
+#15 6.976   - Locking sebastian/type (3.2.1)
+#15 6.976   - Locking sebastian/version (3.0.2)
+#15 6.976   - Locking socialiteproviders/deviantart (4.1.0)
+#15 6.976   - Locking socialiteproviders/imgur (4.1.0)
+#15 6.976   - Locking socialiteproviders/instagram (4.1.0)
+#15 6.976   - Locking socialiteproviders/manager (v4.8.1)
+#15 6.976   - Locking socialiteproviders/tumblr (4.1.0)
+#15 6.976   - Locking socialiteproviders/twitch (5.4.0)
+#15 6.976   - Locking socialiteproviders/twitter (4.1.2)
+#15 6.976   - Locking spatie/laravel-honeypot (4.6.1)
+#15 6.976   - Locking spatie/laravel-package-tools (1.12.1)
+#15 6.976   - Locking swiftmailer/swiftmailer (v6.3.0)
+#15 6.976   - Locking symfony/console (v5.4.47)
+#15 6.976   - Locking symfony/css-selector (v6.4.24)
+#15 6.976   - Locking symfony/deprecation-contracts (v3.6.0)
+#15 6.976   - Locking symfony/error-handler (v5.4.46)
+#15 6.976   - Locking symfony/event-dispatcher (v6.4.25)
+#15 6.976   - Locking symfony/event-dispatcher-contracts (v3.6.0)
+#15 6.976   - Locking symfony/finder (v5.4.45)
+#15 6.976   - Locking symfony/http-foundation (v5.4.50)
+#15 6.976   - Locking symfony/http-kernel (v5.4.50)
+#15 6.976   - Locking symfony/mime (v5.4.45)
+#15 6.976   - Locking symfony/polyfill-ctype (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-iconv (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-intl-grapheme (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-intl-idn (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-intl-normalizer (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-mbstring (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-php73 (v1.33.0)
+#15 6.976   - Locking symfony/polyfill-php80 (v1.33.0)
+#15 6.976   - Locking symfony/process (v5.4.47)
+#15 6.976   - Locking symfony/routing (v5.4.48)
+#15 6.976   - Locking symfony/service-contracts (v3.6.1)
+#15 6.976   - Locking symfony/string (v6.4.26)
+#15 6.976   - Locking symfony/translation (v6.4.26)
+#15 6.976   - Locking symfony/translation-contracts (v3.6.1)
+#15 6.977   - Locking symfony/var-dumper (v5.4.48)
+#15 6.977   - Locking theseer/tokenizer (1.3.1)
+#15 6.977   - Locking tijsverkoyen/css-to-inline-styles (v2.3.0)
+#15 6.977   - Locking vlucas/phpdotenv (v5.6.2)
+#15 6.977   - Locking voku/portable-ascii (1.6.1)
+#15 6.981 Writing lock file
+#15 6.981 Installing dependencies from lock file
+#15 6.987 Package operations: 94 installs, 0 updates, 0 removals
+#15 6.989   - Downloading boxconnect/deviant-php (dev-master a9a56bb)
+#15 6.990   - Downloading carbonphp/carbon-doctrine-types (1.0.0)
+#15 6.990   - Downloading doctrine/deprecations (1.1.5)
+#15 6.990   - Downloading doctrine/event-manager (1.2.0)
+#15 6.991   - Downloading doctrine/cache (2.2.0)
+#15 6.991   - Downloading doctrine/dbal (2.13.9)
+#15 6.991   - Downloading doctrine/inflector (2.1.0)
+#15 6.991   - Downloading doctrine/lexer (1.2.3)
+#15 6.992   - Downloading dragonmantank/cron-expression (v3.5.0)
+#15 6.992   - Downloading symfony/polyfill-iconv (v1.33.0)
+#15 6.992   - Downloading symfony/polyfill-mbstring (v1.33.0)
+#15 6.993   - Downloading erusev/parsedown (1.7.4)
+#15 6.993   - Downloading ezyang/htmlpurifier (v4.19.0)
+#15 6.993   - Downloading voku/portable-ascii (1.6.1)
+#15 6.993   - Downloading symfony/polyfill-php80 (v1.33.0)
+#15 6.993   - Downloading symfony/polyfill-ctype (v1.33.0)
+#15 6.994   - Downloading phpoption/phpoption (1.9.4)
+#15 6.994   - Downloading graham-campbell/result-type (v1.1.3)
+#15 6.994   - Downloading vlucas/phpdotenv (v5.6.2)
+#15 6.994   - Downloading symfony/css-selector (v6.4.24)
+#15 6.994   - Downloading tijsverkoyen/css-to-inline-styles (v2.3.0)
+#15 6.994   - Downloading symfony/var-dumper (v5.4.48)
+#15 6.995   - Downloading symfony/deprecation-contracts (v3.6.0)
+#15 6.995   - Downloading symfony/routing (v5.4.48)
+#15 6.995   - Downloading symfony/process (v5.4.47)
+#15 6.995   - Downloading symfony/polyfill-intl-normalizer (v1.33.0)
+#15 6.995   - Downloading symfony/polyfill-intl-idn (v1.33.0)
+#15 6.995   - Downloading symfony/mime (v5.4.45)
+#15 6.995   - Downloading symfony/polyfill-php73 (v1.33.0)
+#15 6.996   - Downloading symfony/http-foundation (v5.4.50)
+#15 6.996   - Downloading psr/event-dispatcher (1.0.0)
+#15 6.996   - Downloading symfony/event-dispatcher-contracts (v3.6.0)
+#15 6.996   - Downloading symfony/event-dispatcher (v6.4.25)
+#15 6.996   - Downloading psr/log (2.0.0)
+#15 6.996   - Downloading symfony/error-handler (v5.4.46)
+#15 6.996   - Downloading symfony/http-kernel (v5.4.50)
+#15 6.997   - Downloading symfony/finder (v5.4.45)
+#15 6.997   - Downloading symfony/polyfill-intl-grapheme (v1.33.0)
+#15 6.997   - Downloading symfony/string (v6.4.26)
+#15 6.997   - Downloading psr/container (1.1.2)
+#15 6.997   - Downloading symfony/service-contracts (v3.6.1)
+#15 6.997   - Downloading symfony/console (v5.4.47)
+#15 6.997   - Downloading egulias/email-validator (2.1.25)
+#15 6.998   - Downloading swiftmailer/swiftmailer (v6.3.0)
+#15 6.998   - Downloading ramsey/collection (2.1.1)
+#15 6.998   - Downloading brick/math (0.13.1)
+#15 6.998   - Downloading ramsey/uuid (4.9.1)
+#15 6.998   - Downloading psr/simple-cache (1.0.1)
+#15 6.999   - Downloading opis/closure (3.7.0)
+#15 6.999   - Downloading symfony/translation-contracts (v3.6.1)
+#15 6.999   - Downloading symfony/translation (v6.4.26)
+#15 6.999   - Downloading psr/clock (1.0.0)
+#15 6.999   - Downloading nesbot/carbon (2.73.0)
+#15 6.999   - Downloading monolog/monolog (2.10.0)
+#15 6.999   - Downloading league/mime-type-detection (1.16.0)
+#15 7.000   - Downloading league/flysystem (1.1.10)
+#15 7.000   - Downloading nette/utils (v4.0.9)
+#15 7.000   - Downloading nette/schema (v1.3.3)
+#15 7.000   - Downloading dflydev/dot-access-data (v3.0.3)
+#15 7.000   - Downloading league/config (v1.2.0)
+#15 7.000   - Downloading league/commonmark (2.7.1)
+#15 7.000   - Downloading laravel/serializable-closure (v1.3.7)
+#15 7.001   - Downloading laravel/framework (8.x-dev 863d928)
+#15 7.001   - Downloading fideloper/proxy (4.4.2)
+#15 7.001   - Downloading guzzlehttp/promises (2.3.0)
+#15 7.001   - Downloading ralouphie/getallheaders (3.0.3)
+#15 7.001   - Downloading psr/http-message (2.0)
+#15 7.002   - Downloading psr/http-factory (1.1.0)
+#15 7.002   - Downloading guzzlehttp/psr7 (2.8.0)
+#15 7.002   - Downloading intervention/image (2.7.2)
+#15 7.002   - Downloading laracasts/flash (3.2.4)
+#15 7.002   - Downloading laravel/helpers (v1.8.1)
+#15 7.002   - Downloading paragonie/random_compat (v9.99.100)
+#15 7.003   - Downloading paragonie/constant_time_encoding (v3.1.3)
+#15 7.003   - Downloading phpseclib/phpseclib (3.0.47)
+#15 7.003   - Downloading psr/http-client (1.0.3)
+#15 7.003   - Downloading guzzlehttp/guzzle (7.10.0)
+#15 7.003   - Downloading league/oauth1-client (v1.11.0)
+#15 7.003   - Downloading firebase/php-jwt (v6.11.1)
+#15 7.004   - Downloading laravel/socialite (v5.23.1)
+#15 7.004   - Downloading nikic/php-parser (v5.6.2)
+#15 7.004   - Downloading psy/psysh (v0.12.14)
+#15 7.004   - Downloading laravel/tinker (v2.10.1)
+#15 7.004   - Downloading laravel/ui (v3.4.6)
+#15 7.005   - Downloading laravelcollective/html (v6.4.1)
+#15 7.005   - Downloading socialiteproviders/manager (v4.8.1)
+#15 7.005   - Downloading socialiteproviders/deviantart (4.1.0)
+#15 7.005   - Downloading socialiteproviders/imgur (4.1.0)
+#15 7.005   - Downloading socialiteproviders/instagram (4.1.0)
+#15 7.005   - Downloading socialiteproviders/tumblr (4.1.0)
+#15 7.005   - Downloading socialiteproviders/twitch (5.4.0)
+#15 7.005   - Downloading socialiteproviders/twitter (4.1.2)
+#15 7.006   - Downloading spatie/laravel-package-tools (1.12.1)
+#15 7.006   - Downloading spatie/laravel-honeypot (4.6.1)
+#15 7.012   0/94 [>---------------------------]   0%
+#15 8.117   1/94 [>---------------------------]   1%
+#15 8.501  10/94 [==>-------------------------]  10%
+#15 9.191  20/94 [=====>----------------------]  21%
+#15 9.854  29/94 [========>-------------------]  30%
+#15 10.43  39/94 [===========>----------------]  41%
+#15 11.01  47/94 [==============>-------------]  50%
+#15 11.66  57/94 [================>-----------]  60%
+#15 12.24  66/94 [===================>--------]  70%
+#15 12.91  77/94 [======================>-----]  81%
+#15 13.45  85/94 [=========================>--]  90%
+#15 14.18  94/94 [============================] 100%
+#15 14.18   - Installing boxconnect/deviant-php (dev-master a9a56bb): Extracting archive
+#15 14.19   - Installing carbonphp/carbon-doctrine-types (1.0.0): Extracting archive
+#15 14.19   - Installing doctrine/deprecations (1.1.5): Extracting archive
+#15 14.19   - Installing doctrine/event-manager (1.2.0): Extracting archive
+#15 14.19   - Installing doctrine/cache (2.2.0): Extracting archive
+#15 14.19   - Installing doctrine/dbal (2.13.9): Extracting archive
+#15 14.20   - Installing doctrine/inflector (2.1.0): Extracting archive
+#15 14.20   - Installing doctrine/lexer (1.2.3): Extracting archive
+#15 14.20   - Installing dragonmantank/cron-expression (v3.5.0): Extracting archive
+#15 14.21   - Installing symfony/polyfill-iconv (v1.33.0): Extracting archive
+#15 14.21   - Installing symfony/polyfill-mbstring (v1.33.0): Extracting archive
+#15 14.21   - Installing erusev/parsedown (1.7.4): Extracting archive
+#15 14.21   - Installing ezyang/htmlpurifier (v4.19.0): Extracting archive
+#15 14.21   - Installing voku/portable-ascii (1.6.1): Extracting archive
+#15 14.21   - Installing symfony/polyfill-php80 (v1.33.0): Extracting archive
+#15 14.21   - Installing symfony/polyfill-ctype (v1.33.0): Extracting archive
+#15 14.21   - Installing phpoption/phpoption (1.9.4): Extracting archive
+#15 14.21   - Installing graham-campbell/result-type (v1.1.3): Extracting archive
+#15 14.21   - Installing vlucas/phpdotenv (v5.6.2): Extracting archive
+#15 14.21   - Installing symfony/css-selector (v6.4.24): Extracting archive
+#15 14.21   - Installing tijsverkoyen/css-to-inline-styles (v2.3.0): Extracting archive
+#15 14.21   - Installing symfony/var-dumper (v5.4.48): Extracting archive
+#15 14.21   - Installing symfony/deprecation-contracts (v3.6.0): Extracting archive
+#15 14.21   - Installing symfony/routing (v5.4.48): Extracting archive
+#15 14.21   - Installing symfony/process (v5.4.47): Extracting archive
+#15 14.21   - Installing symfony/polyfill-intl-normalizer (v1.33.0): Extracting archive
+#15 14.21   - Installing symfony/polyfill-intl-idn (v1.33.0): Extracting archive
+#15 14.21   - Installing symfony/mime (v5.4.45): Extracting archive
+#15 14.21   - Installing symfony/polyfill-php73 (v1.33.0): Extracting archive
+#15 14.21   - Installing symfony/http-foundation (v5.4.50): Extracting archive
+#15 14.22   - Installing psr/event-dispatcher (1.0.0): Extracting archive
+#15 14.22   - Installing symfony/event-dispatcher-contracts (v3.6.0): Extracting archive
+#15 14.22   - Installing symfony/event-dispatcher (v6.4.25): Extracting archive
+#15 14.22   - Installing psr/log (2.0.0): Extracting archive
+#15 14.22   - Installing symfony/error-handler (v5.4.46): Extracting archive
+#15 14.22   - Installing symfony/http-kernel (v5.4.50): Extracting archive
+#15 14.22   - Installing symfony/finder (v5.4.45): Extracting archive
+#15 14.22   - Installing symfony/polyfill-intl-grapheme (v1.33.0): Extracting archive
+#15 14.22   - Installing symfony/string (v6.4.26): Extracting archive
+#15 14.22   - Installing psr/container (1.1.2): Extracting archive
+#15 14.22   - Installing symfony/service-contracts (v3.6.1): Extracting archive
+#15 14.22   - Installing symfony/console (v5.4.47): Extracting archive
+#15 14.22   - Installing egulias/email-validator (2.1.25): Extracting archive
+#15 14.22   - Installing swiftmailer/swiftmailer (v6.3.0): Extracting archive
+#15 14.22   - Installing ramsey/collection (2.1.1): Extracting archive
+#15 14.22   - Installing brick/math (0.13.1): Extracting archive
+#15 14.22   - Installing ramsey/uuid (4.9.1): Extracting archive
+#15 14.22   - Installing psr/simple-cache (1.0.1): Extracting archive
+#15 14.22   - Installing opis/closure (3.7.0): Extracting archive
+#15 14.22   - Installing symfony/translation-contracts (v3.6.1): Extracting archive
+#15 14.22   - Installing symfony/translation (v6.4.26): Extracting archive
+#15 14.22   - Installing psr/clock (1.0.0): Extracting archive
+#15 14.22   - Installing nesbot/carbon (2.73.0): Extracting archive
+#15 14.22   - Installing monolog/monolog (2.10.0): Extracting archive
+#15 14.22   - Installing league/mime-type-detection (1.16.0): Extracting archive
+#15 14.22   - Installing league/flysystem (1.1.10): Extracting archive
+#15 14.22   - Installing nette/utils (v4.0.9): Extracting archive
+#15 14.22   - Installing nette/schema (v1.3.3): Extracting archive
+#15 14.22   - Installing dflydev/dot-access-data (v3.0.3): Extracting archive
+#15 14.22   - Installing league/config (v1.2.0): Extracting archive
+#15 14.22   - Installing league/commonmark (2.7.1): Extracting archive
+#15 14.22   - Installing laravel/serializable-closure (v1.3.7): Extracting archive
+#15 14.22   - Installing laravel/framework (8.x-dev 863d928): Extracting archive
+#15 14.22   - Installing fideloper/proxy (4.4.2): Extracting archive
+#15 14.22   - Installing guzzlehttp/promises (2.3.0): Extracting archive
+#15 14.22   - Installing ralouphie/getallheaders (3.0.3): Extracting archive
+#15 14.22   - Installing psr/http-message (2.0): Extracting archive
+#15 14.23   - Installing psr/http-factory (1.1.0): Extracting archive
+#15 14.23   - Installing guzzlehttp/psr7 (2.8.0): Extracting archive
+#15 14.23   - Installing intervention/image (2.7.2): Extracting archive
+#15 14.23   - Installing laracasts/flash (3.2.4): Extracting archive
+#15 14.23   - Installing laravel/helpers (v1.8.1): Extracting archive
+#15 14.23   - Installing paragonie/random_compat (v9.99.100): Extracting archive
+#15 14.23   - Installing paragonie/constant_time_encoding (v3.1.3): Extracting archive
+#15 14.23   - Installing phpseclib/phpseclib (3.0.47): Extracting archive
+#15 14.23   - Installing psr/http-client (1.0.3): Extracting archive
+#15 14.23   - Installing guzzlehttp/guzzle (7.10.0): Extracting archive
+#15 14.23   - Installing league/oauth1-client (v1.11.0): Extracting archive
+#15 14.23   - Installing firebase/php-jwt (v6.11.1): Extracting archive
+#15 14.23   - Installing laravel/socialite (v5.23.1): Extracting archive
+#15 14.23   - Installing nikic/php-parser (v5.6.2): Extracting archive
+#15 14.23   - Installing psy/psysh (v0.12.14): Extracting archive
+#15 14.23   - Installing laravel/tinker (v2.10.1): Extracting archive
+#15 14.23   - Installing laravel/ui (v3.4.6): Extracting archive
+#15 14.23   - Installing laravelcollective/html (v6.4.1): Extracting archive
+#15 14.23   - Installing socialiteproviders/manager (v4.8.1): Extracting archive
+#15 14.23   - Installing socialiteproviders/deviantart (4.1.0): Extracting archive
+#15 14.23   - Installing socialiteproviders/imgur (4.1.0): Extracting archive
+#15 14.23   - Installing socialiteproviders/instagram (4.1.0): Extracting archive
+#15 14.23   - Installing socialiteproviders/tumblr (4.1.0): Extracting archive
+#15 14.23   - Installing socialiteproviders/twitch (5.4.0): Extracting archive
+#15 14.23   - Installing socialiteproviders/twitter (4.1.2): Extracting archive
+#15 14.23   - Installing spatie/laravel-package-tools (1.12.1): Extracting archive
+#15 14.23   - Installing spatie/laravel-honeypot (4.6.1): Extracting archive
+#15 14.26   0/94 [>---------------------------]   0%
+#15 14.39  20/94 [=====>----------------------]  21%
+#15 14.50  38/94 [===========>----------------]  40%
+#15 14.61  49/94 [==============>-------------]  52%
+#15 14.71  59/94 [=================>----------]  62%
+#15 14.83  73/94 [=====================>------]  77%
+#15 14.95  85/94 [=========================>--]  90%
+#15 15.03  94/94 [============================] 100%
+#15 15.93 81 package suggestions were added by new dependencies, use `composer suggest` to see details.
+#15 15.93 Package doctrine/cache is abandoned, you should avoid using it. No replacement was suggested.
+#15 15.93 Package laravelcollective/html is abandoned, you should avoid using it. Use spatie/laravel-html instead.
+#15 15.93 Package swiftmailer/swiftmailer is abandoned, you should avoid using it. Use symfony/mailer instead.
+#15 15.93 Package fzaninotto/faker is abandoned, you should avoid using it. No replacement was suggested.
+#15 15.93 Generating optimized autoload files
+#15 17.03 > Illuminate\Foundation\ComposerScripts::postAutoloadDump
+#15 17.05 > @php artisan package:discover --ansi
+#15 17.15 Discovered Package: [32mfideloper/proxy[39m
+#15 17.15 Discovered Package: [32mintervention/image[39m
+#15 17.15 Discovered Package: [32mlaracasts/flash[39m
+#15 17.15 Discovered Package: [32mlaravel/socialite[39m
+#15 17.15 Discovered Package: [32mlaravel/tinker[39m
+#15 17.15 Discovered Package: [32mlaravel/ui[39m
+#15 17.15 Discovered Package: [32mlaravelcollective/html[39m
+#15 17.15 Discovered Package: [32mnesbot/carbon[39m
+#15 17.15 Discovered Package: [32msocialiteproviders/manager[39m
+#15 17.15 Discovered Package: [32mspatie/laravel-honeypot[39m
+#15 17.15 [32mPackage manifest generated successfully.[39m
+#15 17.16 52 packages you are using are looking for funding.
+#15 17.16 Use the `composer fund` command to find out more!
+#15 DONE 17.6s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 1.5s done
+#16 writing image sha256:315d7e871eae038719b09b7addc697c539950697e098e4e3ac07e3053646145d done
+#16 naming to docker.io/library/lorekeeper-app done
+#16 DONE 1.5s
+
+#17 resolving provenance for metadata file
+#17 DONE 0.0s
+ lorekeeper-app  Built
+✅ Docker images built
+🐳 Starting Docker containers...
+time="2025-11-25T22:09:03+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_db  Running
+ Container lorekeeper_redis  Running
+⏳ Waiting for database to be ready...
+time="2025-11-25T22:09:03+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+✅ Database is ready!
+📦 Installing Composer dependencies...
+time="2025-11-25T22:09:03+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_db  Running
+ Container lorekeeper_redis  Running
+The repository at "/var/www/html" does not have the correct ownership and git refuses to use it:
+
+fatal: detected dubious ownership in repository at '/var/www/html'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /var/www/html
+
+No composer.lock file present. Updating dependencies to latest instead of installing from lock file. See https://getcomposer.org/install for more information.
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 128 installs, 0 updates, 0 removals
+  - Locking beyondcode/laravel-dump-server (1.9.0)
+  - Locking boxconnect/deviant-php (dev-master a9a56bb)
+  - Locking brick/math (0.13.1)
+  - Locking carbonphp/carbon-doctrine-types (1.0.0)
+  - Locking dflydev/dot-access-data (v3.0.3)
+  - Locking doctrine/cache (2.2.0)
+  - Locking doctrine/dbal (2.13.9)
+  - Locking doctrine/deprecations (1.1.5)
+  - Locking doctrine/event-manager (1.2.0)
+  - Locking doctrine/inflector (2.1.0)
+  - Locking doctrine/instantiator (2.0.0)
+  - Locking doctrine/lexer (1.2.3)
+  - Locking dragonmantank/cron-expression (v3.5.0)
+  - Locking egulias/email-validator (2.1.25)
+  - Locking erusev/parsedown (1.7.4)
+  - Locking ezyang/htmlpurifier (v4.19.0)
+  - Locking facade/ignition-contracts (1.0.2)
+  - Locking fideloper/proxy (4.4.2)
+  - Locking filp/whoops (2.18.4)
+  - Locking firebase/php-jwt (v6.11.1)
+  - Locking fzaninotto/faker (v1.5.0)
+  - Locking graham-campbell/result-type (v1.1.3)
+  - Locking guzzlehttp/guzzle (7.10.0)
+  - Locking guzzlehttp/promises (2.3.0)
+  - Locking guzzlehttp/psr7 (2.8.0)
+  - Locking hamcrest/hamcrest-php (v2.1.1)
+  - Locking intervention/image (2.7.2)
+  - Locking laracasts/flash (3.2.4)
+  - Locking laravel/framework (8.x-dev 863d928)
+  - Locking laravel/helpers (v1.8.1)
+  - Locking laravel/serializable-closure (v1.3.7)
+  - Locking laravel/socialite (v5.23.1)
+  - Locking laravel/tinker (v2.10.1)
+  - Locking laravel/ui (v3.4.6)
+  - Locking laravelcollective/html (v6.4.1)
+  - Locking league/commonmark (2.7.1)
+  - Locking league/config (v1.2.0)
+  - Locking league/flysystem (1.1.10)
+  - Locking league/mime-type-detection (1.16.0)
+  - Locking league/oauth1-client (v1.11.0)
+  - Locking mockery/mockery (1.6.12)
+  - Locking monolog/monolog (2.10.0)
+  - Locking myclabs/deep-copy (1.13.4)
+  - Locking nesbot/carbon (2.73.0)
+  - Locking nette/schema (v1.3.3)
+  - Locking nette/utils (v4.0.9)
+  - Locking nikic/php-parser (v5.6.2)
+  - Locking nunomaduro/collision (v5.11.0)
+  - Locking opis/closure (3.7.0)
+  - Locking paragonie/constant_time_encoding (v3.1.3)
+  - Locking paragonie/random_compat (v9.99.100)
+  - Locking phar-io/manifest (2.0.4)
+  - Locking phar-io/version (3.2.1)
+  - Locking phpoption/phpoption (1.9.4)
+  - Locking phpseclib/phpseclib (3.0.47)
+  - Locking phpunit/php-code-coverage (9.2.32)
+  - Locking phpunit/php-file-iterator (3.0.6)
+  - Locking phpunit/php-invoker (3.1.1)
+  - Locking phpunit/php-text-template (2.0.4)
+  - Locking phpunit/php-timer (5.0.3)
+  - Locking phpunit/phpunit (9.6.29)
+  - Locking psr/clock (1.0.0)
+  - Locking psr/container (1.1.2)
+  - Locking psr/event-dispatcher (1.0.0)
+  - Locking psr/http-client (1.0.3)
+  - Locking psr/http-factory (1.1.0)
+  - Locking psr/http-message (2.0)
+  - Locking psr/log (2.0.0)
+  - Locking psr/simple-cache (1.0.1)
+  - Locking psy/psysh (v0.12.14)
+  - Locking ralouphie/getallheaders (3.0.3)
+  - Locking ramsey/collection (2.1.1)
+  - Locking ramsey/uuid (4.9.1)
+  - Locking sebastian/cli-parser (1.0.2)
+  - Locking sebastian/code-unit (1.0.8)
+  - Locking sebastian/code-unit-reverse-lookup (2.0.3)
+  - Locking sebastian/comparator (4.0.9)
+  - Locking sebastian/complexity (2.0.3)
+  - Locking sebastian/diff (4.0.6)
+  - Locking sebastian/environment (5.1.5)
+  - Locking sebastian/exporter (4.0.8)
+  - Locking sebastian/global-state (5.0.8)
+  - Locking sebastian/lines-of-code (1.0.4)
+  - Locking sebastian/object-enumerator (4.0.4)
+  - Locking sebastian/object-reflector (2.0.4)
+  - Locking sebastian/recursion-context (4.0.6)
+  - Locking sebastian/resource-operations (3.0.4)
+  - Locking sebastian/type (3.2.1)
+  - Locking sebastian/version (3.0.2)
+  - Locking socialiteproviders/deviantart (4.1.0)
+  - Locking socialiteproviders/imgur (4.1.0)
+  - Locking socialiteproviders/instagram (4.1.0)
+  - Locking socialiteproviders/manager (v4.8.1)
+  - Locking socialiteproviders/tumblr (4.1.0)
+  - Locking socialiteproviders/twitch (5.4.0)
+  - Locking socialiteproviders/twitter (4.1.2)
+  - Locking spatie/laravel-honeypot (4.6.1)
+  - Locking spatie/laravel-package-tools (1.12.1)
+  - Locking swiftmailer/swiftmailer (v6.3.0)
+  - Locking symfony/console (v5.4.47)
+  - Locking symfony/css-selector (v6.4.24)
+  - Locking symfony/deprecation-contracts (v3.6.0)
+  - Locking symfony/error-handler (v5.4.46)
+  - Locking symfony/event-dispatcher (v6.4.25)
+  - Locking symfony/event-dispatcher-contracts (v3.6.0)
+  - Locking symfony/finder (v5.4.45)
+  - Locking symfony/http-foundation (v5.4.50)
+  - Locking symfony/http-kernel (v5.4.50)
+  - Locking symfony/mime (v5.4.45)
+  - Locking symfony/polyfill-ctype (v1.33.0)
+  - Locking symfony/polyfill-iconv (v1.33.0)
+  - Locking symfony/polyfill-intl-grapheme (v1.33.0)
+  - Locking symfony/polyfill-intl-idn (v1.33.0)
+  - Locking symfony/polyfill-intl-normalizer (v1.33.0)
+  - Locking symfony/polyfill-mbstring (v1.33.0)
+  - Locking symfony/polyfill-php73 (v1.33.0)
+  - Locking symfony/polyfill-php80 (v1.33.0)
+  - Locking symfony/process (v5.4.47)
+  - Locking symfony/routing (v5.4.48)
+  - Locking symfony/service-contracts (v3.6.1)
+  - Locking symfony/string (v6.4.26)
+  - Locking symfony/translation (v6.4.26)
+  - Locking symfony/translation-contracts (v3.6.1)
+  - Locking symfony/var-dumper (v5.4.48)
+  - Locking theseer/tokenizer (1.3.1)
+  - Locking tijsverkoyen/css-to-inline-styles (v2.3.0)
+  - Locking vlucas/phpdotenv (v5.6.2)
+  - Locking voku/portable-ascii (1.6.1)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 128 installs, 0 updates, 0 removals
+  - Downloading beyondcode/laravel-dump-server (1.9.0)
+  - Downloading fzaninotto/faker (v1.5.0)
+  - Downloading hamcrest/hamcrest-php (v2.1.1)
+  - Downloading mockery/mockery (1.6.12)
+  - Downloading filp/whoops (2.18.4)
+  - Downloading facade/ignition-contracts (1.0.2)
+  - Downloading nunomaduro/collision (v5.11.0)
+  - Downloading sebastian/version (3.0.2)
+  - Downloading sebastian/type (3.2.1)
+  - Downloading sebastian/resource-operations (3.0.4)
+  - Downloading sebastian/recursion-context (4.0.6)
+  - Downloading sebastian/object-reflector (2.0.4)
+  - Downloading sebastian/object-enumerator (4.0.4)
+  - Downloading sebastian/global-state (5.0.8)
+  - Downloading sebastian/exporter (4.0.8)
+  - Downloading sebastian/environment (5.1.5)
+  - Downloading sebastian/diff (4.0.6)
+  - Downloading sebastian/comparator (4.0.9)
+  - Downloading sebastian/code-unit (1.0.8)
+  - Downloading sebastian/cli-parser (1.0.2)
+  - Downloading phpunit/php-timer (5.0.3)
+  - Downloading phpunit/php-text-template (2.0.4)
+  - Downloading phpunit/php-invoker (3.1.1)
+  - Downloading phpunit/php-file-iterator (3.0.6)
+  - Downloading theseer/tokenizer (1.3.1)
+  - Downloading sebastian/lines-of-code (1.0.4)
+  - Downloading sebastian/complexity (2.0.3)
+  - Downloading sebastian/code-unit-reverse-lookup (2.0.3)
+  - Downloading phpunit/php-code-coverage (9.2.32)
+  - Downloading phar-io/version (3.2.1)
+  - Downloading phar-io/manifest (2.0.4)
+  - Downloading myclabs/deep-copy (1.13.4)
+  - Downloading doctrine/instantiator (2.0.0)
+  - Downloading phpunit/phpunit (9.6.29)
+  0/34 [>---------------------------]   0%
+  1/34 [>---------------------------]   2%
+  7/34 [=====>----------------------]  20%
+ 11/34 [=========>------------------]  32%
+ 15/34 [============>---------------]  44%
+ 19/34 [===============>------------]  55%
+ 22/34 [==================>---------]  64%
+ 26/34 [=====================>------]  76%
+ 28/34 [=======================>----]  82%
+ 32/34 [==========================>-]  94%
+ 34/34 [============================] 100%
+  - Installing symfony/polyfill-php80 (v1.33.0): Extracting archive
+  - Installing symfony/polyfill-iconv (v1.33.0): Extracting archive
+  - Installing symfony/polyfill-mbstring (v1.33.0): Extracting archive
+  - Installing symfony/var-dumper (v5.4.48): Extracting archive
+  - Installing voku/portable-ascii (1.6.1): Extracting archive
+  - Installing symfony/polyfill-ctype (v1.33.0): Extracting archive
+  - Installing phpoption/phpoption (1.9.4): Extracting archive
+  - Installing graham-campbell/result-type (v1.1.3): Extracting archive
+  - Installing vlucas/phpdotenv (v5.6.2): Extracting archive
+  - Installing symfony/css-selector (v6.4.24): Extracting archive
+  - Installing tijsverkoyen/css-to-inline-styles (v2.3.0): Extracting archive
+  - Installing symfony/deprecation-contracts (v3.6.0): Extracting archive
+  - Installing symfony/routing (v5.4.48): Extracting archive
+  - Installing symfony/process (v5.4.47): Extracting archive
+  - Installing symfony/polyfill-intl-normalizer (v1.33.0): Extracting archive
+  - Installing symfony/polyfill-intl-idn (v1.33.0): Extracting archive
+  - Installing symfony/mime (v5.4.45): Extracting archive
+  - Installing symfony/polyfill-php73 (v1.33.0): Extracting archive
+  - Installing symfony/http-foundation (v5.4.50): Extracting archive
+  - Installing psr/event-dispatcher (1.0.0): Extracting archive
+  - Installing symfony/event-dispatcher-contracts (v3.6.0): Extracting archive
+  - Installing symfony/event-dispatcher (v6.4.25): Extracting archive
+  - Installing psr/log (2.0.0): Extracting archive
+  - Installing symfony/error-handler (v5.4.46): Extracting archive
+  - Installing symfony/http-kernel (v5.4.50): Extracting archive
+  - Installing symfony/finder (v5.4.45): Extracting archive
+  - Installing symfony/polyfill-intl-grapheme (v1.33.0): Extracting archive
+  - Installing symfony/string (v6.4.26): Extracting archive
+  - Installing psr/container (1.1.2): Extracting archive
+  - Installing symfony/service-contracts (v3.6.1): Extracting archive
+  - Installing symfony/console (v5.4.47): Extracting archive
+  - Installing doctrine/lexer (1.2.3): Extracting archive
+  - Installing egulias/email-validator (2.1.25): Extracting archive
+  - Installing swiftmailer/swiftmailer (v6.3.0): Extracting archive
+  - Installing ramsey/collection (2.1.1): Extracting archive
+  - Installing brick/math (0.13.1): Extracting archive
+  - Installing ramsey/uuid (4.9.1): Extracting archive
+  - Installing psr/simple-cache (1.0.1): Extracting archive
+  - Installing opis/closure (3.7.0): Extracting archive
+  - Installing symfony/translation-contracts (v3.6.1): Extracting archive
+  - Installing symfony/translation (v6.4.26): Extracting archive
+  - Installing psr/clock (1.0.0): Extracting archive
+  - Installing carbonphp/carbon-doctrine-types (1.0.0): Extracting archive
+  - Installing nesbot/carbon (2.73.0): Extracting archive
+  - Installing monolog/monolog (2.10.0): Extracting archive
+  - Installing league/mime-type-detection (1.16.0): Extracting archive
+  - Installing league/flysystem (1.1.10): Extracting archive
+  - Installing nette/utils (v4.0.9): Extracting archive
+  - Installing nette/schema (v1.3.3): Extracting archive
+  - Installing dflydev/dot-access-data (v3.0.3): Extracting archive
+  - Installing league/config (v1.2.0): Extracting archive
+  - Installing league/commonmark (2.7.1): Extracting archive
+  - Installing laravel/serializable-closure (v1.3.7): Extracting archive
+  - Installing dragonmantank/cron-expression (v3.5.0): Extracting archive
+  - Installing doctrine/inflector (2.1.0): Extracting archive
+  - Installing laravel/framework (8.x-dev 863d928): Extracting archive
+  - Installing beyondcode/laravel-dump-server (1.9.0): Extracting archive
+  - Installing boxconnect/deviant-php (dev-master a9a56bb): Extracting archive
+  - Installing doctrine/deprecations (1.1.5): Extracting archive
+  - Installing doctrine/event-manager (1.2.0): Extracting archive
+  - Installing doctrine/cache (2.2.0): Extracting archive
+  - Installing doctrine/dbal (2.13.9): Extracting archive
+  - Installing erusev/parsedown (1.7.4): Extracting archive
+  - Installing ezyang/htmlpurifier (v4.19.0): Extracting archive
+  - Installing fideloper/proxy (4.4.2): Extracting archive
+  - Installing fzaninotto/faker (v1.5.0): Extracting archive
+  - Installing guzzlehttp/promises (2.3.0): Extracting archive
+  - Installing ralouphie/getallheaders (3.0.3): Extracting archive
+  - Installing psr/http-message (2.0): Extracting archive
+  - Installing psr/http-factory (1.1.0): Extracting archive
+  - Installing guzzlehttp/psr7 (2.8.0): Extracting archive
+  - Installing intervention/image (2.7.2): Extracting archive
+  - Installing laracasts/flash (3.2.4): Extracting archive
+  - Installing laravel/helpers (v1.8.1): Extracting archive
+  - Installing paragonie/random_compat (v9.99.100): Extracting archive
+  - Installing paragonie/constant_time_encoding (v3.1.3): Extracting archive
+  - Installing phpseclib/phpseclib (3.0.47): Extracting archive
+  - Installing psr/http-client (1.0.3): Extracting archive
+  - Installing guzzlehttp/guzzle (7.10.0): Extracting archive
+  - Installing league/oauth1-client (v1.11.0): Extracting archive
+  - Installing firebase/php-jwt (v6.11.1): Extracting archive
+  - Installing laravel/socialite (v5.23.1): Extracting archive
+  - Installing nikic/php-parser (v5.6.2): Extracting archive
+  - Installing psy/psysh (v0.12.14): Extracting archive
+  - Installing laravel/tinker (v2.10.1): Extracting archive
+  - Installing laravel/ui (v3.4.6): Extracting archive
+  - Installing laravelcollective/html (v6.4.1): Extracting archive
+  - Installing hamcrest/hamcrest-php (v2.1.1): Extracting archive
+  - Installing mockery/mockery (1.6.12): Extracting archive
+  - Installing filp/whoops (2.18.4): Extracting archive
+  - Installing facade/ignition-contracts (1.0.2): Extracting archive
+  - Installing nunomaduro/collision (v5.11.0): Extracting archive
+  - Installing sebastian/version (3.0.2): Extracting archive
+  - Installing sebastian/type (3.2.1): Extracting archive
+  - Installing sebastian/resource-operations (3.0.4): Extracting archive
+  - Installing sebastian/recursion-context (4.0.6): Extracting archive
+  - Installing sebastian/object-reflector (2.0.4): Extracting archive
+  - Installing sebastian/object-enumerator (4.0.4): Extracting archive
+  - Installing sebastian/global-state (5.0.8): Extracting archive
+  - Installing sebastian/exporter (4.0.8): Extracting archive
+  - Installing sebastian/environment (5.1.5): Extracting archive
+  - Installing sebastian/diff (4.0.6): Extracting archive
+  - Installing sebastian/comparator (4.0.9): Extracting archive
+  - Installing sebastian/code-unit (1.0.8): Extracting archive
+  - Installing sebastian/cli-parser (1.0.2): Extracting archive
+  - Installing phpunit/php-timer (5.0.3): Extracting archive
+  - Installing phpunit/php-text-template (2.0.4): Extracting archive
+  - Installing phpunit/php-invoker (3.1.1): Extracting archive
+  - Installing phpunit/php-file-iterator (3.0.6): Extracting archive
+  - Installing theseer/tokenizer (1.3.1): Extracting archive
+  - Installing sebastian/lines-of-code (1.0.4): Extracting archive
+  - Installing sebastian/complexity (2.0.3): Extracting archive
+  - Installing sebastian/code-unit-reverse-lookup (2.0.3): Extracting archive
+  - Installing phpunit/php-code-coverage (9.2.32): Extracting archive
+  - Installing phar-io/version (3.2.1): Extracting archive
+  - Installing phar-io/manifest (2.0.4): Extracting archive
+  - Installing myclabs/deep-copy (1.13.4): Extracting archive
+  - Installing doctrine/instantiator (2.0.0): Extracting archive
+  - Installing phpunit/phpunit (9.6.29): Extracting archive
+  - Installing socialiteproviders/manager (v4.8.1): Extracting archive
+  - Installing socialiteproviders/deviantart (4.1.0): Extracting archive
+  - Installing socialiteproviders/imgur (4.1.0): Extracting archive
+  - Installing socialiteproviders/instagram (4.1.0): Extracting archive
+  - Installing socialiteproviders/tumblr (4.1.0): Extracting archive
+  - Installing socialiteproviders/twitch (5.4.0): Extracting archive
+  - Installing socialiteproviders/twitter (4.1.2): Extracting archive
+  - Installing spatie/laravel-package-tools (1.12.1): Extracting archive
+  - Installing spatie/laravel-honeypot (4.6.1): Extracting archive
+   0/128 [>---------------------------]   0%
+  20/128 [====>-----------------------]  15%
+  38/128 [========>-------------------]  29%
+  49/128 [==========>-----------------]  38%
+  62/128 [=============>--------------]  48%
+  71/128 [===============>------------]  55%
+  81/128 [=================>----------]  63%
+  91/128 [===================>--------]  71%
+ 111/128 [========================>---]  86%
+ 120/128 [==========================>-]  93%
+ 128/128 [============================] 100%
+78 package suggestions were added by new dependencies, use `composer suggest` to see details.
+Package doctrine/cache is abandoned, you should avoid using it. No replacement was suggested.
+Package laravelcollective/html is abandoned, you should avoid using it. Use spatie/laravel-html instead.
+Package swiftmailer/swiftmailer is abandoned, you should avoid using it. Use symfony/mailer instead.
+Package fzaninotto/faker is abandoned, you should avoid using it. No replacement was suggested.
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+Discovered Package: [32mbeyondcode/laravel-dump-server[39m
+Discovered Package: [32mfideloper/proxy[39m
+Discovered Package: [32mintervention/image[39m
+Discovered Package: [32mlaracasts/flash[39m
+Discovered Package: [32mlaravel/socialite[39m
+Discovered Package: [32mlaravel/tinker[39m
+Discovered Package: [32mlaravel/ui[39m
+Discovered Package: [32mlaravelcollective/html[39m
+Discovered Package: [32mnesbot/carbon[39m
+Discovered Package: [32mnunomaduro/collision[39m
+Discovered Package: [32msocialiteproviders/manager[39m
+Discovered Package: [32mspatie/laravel-honeypot[39m
+[32mPackage manifest generated successfully.[39m
+80 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+✅ Composer dependencies installed
+🔑 Generating application key...
+time="2025-11-25T22:09:21+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+Application key set successfully.
+✅ Application key generated
+🔄 Running database migrations...
+time="2025-11-25T22:09:22+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (1,946.39ms)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (290.42ms)
+Migrating: 2018_06_30_113500_create_comments_table
+Migrated:  2018_06_30_113500_create_comments_table (1,123.83ms)
+Migrating: 2019_02_27_075638_create_game_tables
+Migrated:  2019_02_27_075638_create_game_tables (8,477.83ms)
+Migrating: 2019_04_07_130129_add_site_settings
+Migrated:  2019_04_07_130129_add_site_settings (766.78ms)
+Migrating: 2019_04_09_090831_create_user_log_table
+Migrated:  2019_04_09_090831_create_user_log_table (1,441.35ms)
+Migrating: 2019_04_09_095513_create_currency_tables
+Migrated:  2019_04_09_095513_create_currency_tables (2,912.61ms)
+Migrating: 2019_04_12_123405_fix_data_descriptions
+Migrated:  2019_04_12_123405_fix_data_descriptions (8,082.72ms)
+Migrating: 2019_04_13_094613_add_owned_currencies
+Migrated:  2019_04_13_094613_add_owned_currencies (2,580.99ms)
+Migrating: 2019_04_14_120732_add_image_to_item_categories
+Migrated:  2019_04_14_120732_add_image_to_item_categories (374.79ms)
+Migrating: 2019_04_14_121447_add_transfer_flag_to_items
+Migrated:  2019_04_14_121447_add_transfer_flag_to_items (402.81ms)
+Migrating: 2019_04_15_122508_add_prompts_table
+Migrated:  2019_04_15_122508_add_prompts_table (150.67ms)
+Migrating: 2019_04_16_062617_add_parsed_text_to_site_pages
+Migrated:  2019_04_16_062617_add_parsed_text_to_site_pages (768.35ms)
+Migrating: 2019_04_16_080112_add_invitation_keys
+Migrated:  2019_04_16_080112_add_invitation_keys (1,128.88ms)
+Migrating: 2019_04_19_125212_fix_inventory_tables
+Migrated:  2019_04_19_125212_fix_inventory_tables (2,130.47ms)
+Migrating: 2019_04_20_140827_fix_user_item_log
+Migrated:  2019_04_20_140827_fix_user_item_log (1,123.43ms)
+Migrating: 2019_04_29_080228_fix_inventory_tables_again
+Migrated:  2019_04_29_080228_fix_inventory_tables_again (1,293.79ms)
+Migrating: 2019_04_30_070721_add_notification_data
+Migrated:  2019_04_30_070721_add_notification_data (128.64ms)
+Migrating: 2019_05_04_091240_add_news
+Migrated:  2019_05_04_091240_add_news (368.18ms)
+Migrating: 2019_05_11_045038_update_character_tables
+Migrated:  2019_05_11_045038_update_character_tables (1,246.75ms)
+Migrating: 2019_05_12_064538_add_species_id_to_images
+Migrated:  2019_05_12_064538_add_species_id_to_images (1,112.96ms)
+Migrating: 2019_05_12_100722_make_features_nonunique
+Migrated:  2019_05_12_100722_make_features_nonunique (701.26ms)
+Migrating: 2019_05_19_054413_make_character_image_id_nullable
+Migrated:  2019_05_19_054413_make_character_image_id_nullable (2,775.29ms)
+Migrating: 2019_05_20_075936_add_character_sort
+Migrated:  2019_05_20_075936_add_character_sort (293.56ms)
+Migrating: 2019_06_01_121701_add_changed_data_to_character_log
+Migrated:  2019_06_01_121701_add_changed_data_to_character_log (1,386.46ms)
+Migrating: 2019_06_10_083954_create_character_transfer_tables
+Migrated:  2019_06_10_083954_create_character_transfer_tables (826.13ms)
+Migrating: 2019_07_09_063021_create_raffles
+Migrated:  2019_07_09_063021_create_raffles (2,205.62ms)
+Migrating: 2019_07_13_095608_create_loot_tables
+Migrated:  2019_07_13_095608_create_loot_tables (727.36ms)
+Migrating: 2019_07_13_101743_create_prompt_categories
+Migrated:  2019_07_13_101743_create_prompt_categories (1,225.84ms)
+Migrating: 2019_07_15_090200_add_prompt_rewards
+Migrated:  2019_07_15_090200_add_prompt_rewards (1,086.54ms)
+Migrating: 2019_07_21_161720_add_prompt_submissions
+Migrated:  2019_07_21_161720_add_prompt_submissions (2,320.96ms)
+Migrating: 2019_08_06_092958_add_submission_count_to_user_settings
+Migrated:  2019_08_06_092958_add_submission_count_to_user_settings (599.43ms)
+Migrating: 2019_08_09_123451_make_submission_prompt_id_nullable
+Migrated:  2019_08_09_123451_make_submission_prompt_id_nullable (8,549.93ms)
+Migrating: 2019_08_10_120818_add_myo_slots
+Migrated:  2019_08_10_120818_add_myo_slots (754.78ms)
+Migrating: 2019_08_24_101751_add_design_updates
+Migrated:  2019_08_24_101751_add_design_updates (1,656.72ms)
+Migrating: 2019_09_02_101303_drop_images_character_foreign_key
+Migrated:  2019_09_02_101303_drop_images_character_foreign_key (52.50ms)
+Migrating: 2019_09_08_060400_drop_character_images_foreign_keys
+Migrated:  2019_09_08_060400_drop_character_images_foreign_keys (172.75ms)
+Migrating: 2019_09_08_063923_add_submitted_at_to_design_updates
+Migrated:  2019_09_08_063923_add_submitted_at_to_design_updates (561.82ms)
+Migrating: 2019_09_17_110010_rename_design_approval_status
+Migrated:  2019_09_17_110010_rename_design_approval_status (277.23ms)
+Migrating: 2019_09_28_040911_create_shops
+Migrated:  2019_09_28_040911_create_shops (1,042.67ms)
+Migrating: 2019_10_02_085738_add_shop_purchase_limits
+Migrated:  2019_10_02_085738_add_shop_purchase_limits (479.44ms)
+Migrating: 2019_10_12_095632_add_bans
+Migrated:  2019_10_12_095632_add_bans (813.20ms)
+Migrating: 2019_10_21_081343_add_secure_trades
+Migrated:  2019_10_21_081343_add_secure_trades (254.75ms)
+Migrating: 2019_11_05_062623_modify_trade_confirmation_flags
+Migrated:  2019_11_05_062623_modify_trade_confirmation_flags (584.08ms)
+Migrating: 2019_12_02_090542_add_staff_id_to_trades
+Migrated:  2019_12_02_090542_add_staff_id_to_trades (312.13ms)
+Migrating: 2019_12_23_062730_add_item_tags
+Migrated:  2019_12_23_062730_add_item_tags (295.68ms)
+Migrating: 2020_02_23_135512_make_prompt_category_nullable
+Migrated:  2020_02_23_135512_make_prompt_category_nullable (573.54ms)
+Migrating: 2020_03_07_065050_add_bookmarks
+Migrated:  2020_03_07_065050_add_bookmarks (436.19ms)
+Migrating: 2020_03_14_090241_make_character_log_sender_nullable
+Migrated:  2020_03_14_090241_make_character_log_sender_nullable (1,581.11ms)
+Migrating: 2020_03_14_124534_add_subtypes
+Migrated:  2020_03_14_124534_add_subtypes (950.16ms)
+Migrating: 2020_03_23_075539_add_images_to_prompts
+Migrated:  2020_03_23_075539_add_images_to_prompts (306.30ms)
+Migrating: 2020_03_27_113928_add_subtype_to_features
+Migrated:  2020_03_27_113928_add_subtype_to_features (983.95ms)
+Migrating: 2020_04_25_114747_drop_log_foreign_keys
+Migrated:  2020_04_25_114747_drop_log_foreign_keys (54.77ms)
+Migrating: 2020_05_02_152118_drop_character_myo_counts
+Migrated:  2020_05_02_152118_drop_character_myo_counts (748.51ms)
+Migrating: 2020_05_10_204920_change_user_items_count_default
+Migrated:  2020_05_10_204920_change_user_items_count_default (27.33ms)
+Migrating: 2020_05_15_163751_add_holding_count_to_user_items
+Migrated:  2020_05_15_163751_add_holding_count_to_user_items (568.30ms)
+Migrating: 2020_05_23_112548_change_item_tracking_system
+Migrated:  2020_05_23_112548_change_item_tracking_system (719.73ms)
+Migrating: 2020_06_01_124250_add_parsed_submission_comments
+Migrated:  2020_06_01_124250_add_parsed_submission_comments (336.10ms)
+Migrating: 2020_06_06_194000_add_submission_count
+Migrated:  2020_06_06_194000_add_submission_count (327.00ms)
+Migrating: 2020_06_12_155213_add_character_items_table
+Migrated:  2020_06_12_155213_add_character_items_table (789.46ms)
+Migrating: 2020_06_12_161322_add_character_transfer_perms_to_item_categories
+Migrated:  2020_06_12_161322_add_character_transfer_perms_to_item_categories (329.47ms)
+Migrating: 2020_06_15_205604_fix_character_item_log_table
+Migrated:  2020_06_15_205604_fix_character_item_log_table (840.87ms)
+Migrating: 2020_06_15_232619_add_sender_recipient_type_to_character_items_log
+Migrated:  2020_06_15_232619_add_sender_recipient_type_to_character_items_log (457.96ms)
+Migrating: 2020_06_16_182516_adjust_item_logs_for_character_items
+Migrated:  2020_06_16_182516_adjust_item_logs_for_character_items (527.07ms)
+Migrating: 2020_06_16_203821_set_items_log_sender_recipient_default_null
+Migrated:  2020_06_16_203821_set_items_log_sender_recipient_default_null (476.13ms)
+Migrating: 2020_06_19_142842_item_entry_extension
+Migrated:  2020_06_19_142842_item_entry_extension (416.73ms)
+Migrating: 2020_07_27_153640_user_icon_expansion
+Migrated:  2020_07_27_153640_user_icon_expansion (576.97ms)
+Migrating: 2020_07_31_185640_add_type_to_design_updates
+Migrated:  2020_07_31_185640_add_type_to_design_updates (537.64ms)
+Migrating: 2020_07_31_193235_set_design_update_type_null
+Migrated:  2020_07_31_193235_set_design_update_type_null (13.44ms)
+Migrating: 2020_08_10_181928_add_stack_name_to_character_items_table
+Migrated:  2020_08_10_181928_add_stack_name_to_character_items_table (671.89ms)
+Migrating: 2020_08_10_211220_raise_items_log_char_limit
+Migrated:  2020_08_10_211220_raise_items_log_char_limit (502.37ms)
+Migrating: 2020_08_13_173324_add_votes_to_design_updates
+Migrated:  2020_08_13_173324_add_votes_to_design_updates (500.90ms)
+Migrating: 2020_08_25_181738_add_fullsize_hash_to_character_images
+Migrated:  2020_08_25_181738_add_fullsize_hash_to_character_images (1,068.93ms)
+Migrating: 2020_08_27_181445_char-link-addon
+Migrated:  2020_08_27_181445_char-link-addon (193.03ms)
+Migrating: 2020_09_01_122320_add_sales
+Migrated:  2020_09_01_122320_add_sales (1,254.39ms)
+Migrating: 2020_09_11_181218_add_is_featured
+Migrated:  2020_09_11_181218_add_is_featured (444.80ms)
+Migrating: 2020_09_12_181218_add_rank_icon
+Migrated:  2020_09_12_181218_add_rank_icon (577.41ms)
+Migrating: 2020_09_13_001802_add_toggle_for_comments_on_site_pages
+Migrated:  2020_09_13_001802_add_toggle_for_comments_on_site_pages (349.88ms)
+Migrating: 2020_09_16_190405_make_gallery_tables
+Migrated:  2020_09_16_190405_make_gallery_tables (370.19ms)
+Migrating: 2020_09_17_185436_fix_gallery_tables
+Migrated:  2020_09_17_185436_fix_gallery_tables (1,545.54ms)
+Migrating: 2020_09_18_194615_re_add_gallery_sort
+Migrated:  2020_09_18_194615_re_add_gallery_sort (184.61ms)
+Migrating: 2020_09_18_225657_add_rejected_status_to_gallery_submissions
+Migrated:  2020_09_18_225657_add_rejected_status_to_gallery_submissions (50.45ms)
+Migrating: 2020_09_19_023205_add_title_to_gallery_submissions
+Migrated:  2020_09_19_023205_add_title_to_gallery_submissions (473.57ms)
+Migrating: 2020_09_21_205840_transfer_reason
+Migrated:  2020_09_21_205840_transfer_reason (281.88ms)
+Migrating: 2020_09_23_020953_set_gallery_submission_hash_nullable
+Migrated:  2020_09_23_020953_set_gallery_submission_hash_nullable (1,239.03ms)
+Migrating: 2020_09_26_140543_add_gallery_favorites_table
+Migrated:  2020_09_26_140543_add_gallery_favorites_table (761.16ms)
+Migrating: 2020_10_02_152241_add_staff_comments_to_gallery_submissions
+Migrated:  2020_10_02_152241_add_staff_comments_to_gallery_submissions (627.46ms)
+Migrating: 2020_10_03_170042_add_valued_status_to_gallery_submissions
+Migrated:  2020_10_03_170042_add_valued_status_to_gallery_submissions (427.52ms)
+Migrating: 2020_10_03_183104_add_type_to_gallery_submission_collaborators
+Migrated:  2020_10_03_183104_add_type_to_gallery_submission_collaborators (529.88ms)
+Migrating: 2020_10_03_211413_add_prefix_to_prompts
+Migrated:  2020_10_03_211413_add_prefix_to_prompts (123.83ms)
+Migrating: 2020_10_05_180536_raise_currencies_log_log_character_limit
+Migrated:  2020_10_05_180536_raise_currencies_log_log_character_limit (13.29ms)
+Migrating: 2020_10_08_081102_add_sub_masterlist
+Migrated:  2020_10_08_081102_add_sub_masterlist (1,046.90ms)
+Migrating: 2020_10_15_143857_add_user_reports
+Migrated:  2020_10_15_143857_add_user_reports (530.72ms)
+Migrating: 2020_10_15_185536_add_bug_report_option
+Migrated:  2020_10_15_185536_add_bug_report_option (335.32ms)
+Migrating: 2020_10_19_144506_add_type_to_comments
+Migrated:  2020_10_19_144506_add_type_to_comments (416.25ms)
+Migrating: 2020_10_30_011826_add_content_warning_to_gallery_submissions
+Migrated:  2020_10_30_011826_add_content_warning_to_gallery_submissions (179.38ms)
+Migrating: 2020_10_30_170108_add_gift_writing_status_to_characters
+Migrated:  2020_10_30_170108_add_gift_writing_status_to_characters (520.50ms)
+Migrating: 2020_11_02_204925_add_delayed_comments_to_sales
+Migrated:  2020_11_02_204925_add_delayed_comments_to_sales (577.14ms)
+Migrating: 2020_11_09_201534_add_user_id_to_character_image_creators
+Migrated:  2020_11_09_201534_add_user_id_to_character_image_creators (430.27ms)
+Migrating: 2020_11_13_180553_create_aliases_table
+Migrated:  2020_11_13_180553_create_aliases_table (553.98ms)
+Migrating: 2020_11_13_184820_add_has_alias_to_users_table
+Migrated:  2020_11_13_184820_add_has_alias_to_users_table (237.60ms)
+Migrating: 2020_11_17_001602_add_url_to_characters
+Migrated:  2020_11_17_001602_add_url_to_characters (646.51ms)
+Migrating: 2020_11_17_181454_add_url_to_character_logs
+Migrated:  2020_11_17_181454_add_url_to_character_logs (729.86ms)
+Migrating: 2020_11_18_011215_add_visibility_toggles_to_prompts
+Migrated:  2020_11_18_011215_add_visibility_toggles_to_prompts (483.46ms)
+Migrating: 2020_11_23_152732_add_site_extensions_table
+Migrated:  2020_11_23_152732_add_site_extensions_table (335.74ms)
+Migrating: 2020_11_25_192234_add_artist_id_to_items
+Migrated:  2020_11_25_192234_add_artist_id_to_items (372.68ms)
+Migrating: 2020_11_26_060832_make_submissions_url_nullable
+Migrated:  2020_11_26_060832_make_submissions_url_nullable (371.71ms)
+Migrating: 2020_12_04_181214_add_scheduling_to_galleries
+Migrated:  2020_12_04_181214_add_scheduling_to_galleries (450.47ms)
+Migrating: 2020_12_05_165316_index_gallery_tables
+Migrated:  2020_12_05_165316_index_gallery_tables (321.97ms)
+Migrating: 2021_01_08_230640_add_released_to_items
+Migrated:  2021_01_08_230640_add_released_to_items (416.94ms)
+Migrating: 2021_01_15_012947_add_select_prompt_to_galleries
+Migrated:  2021_01_15_012947_add_select_prompt_to_galleries (335.17ms)
+Migrating: 2021_02_14_231530_change_character_value_to_decimal
+Migrated:  2021_02_14_231530_change_character_value_to_decimal (638.48ms)
+Migrating: 2021_03_28_172111_add_item_category_info_to_loots
+Migrated:  2021_03_28_172111_add_item_category_info_to_loots (312.59ms)
+Migrating: 2021_04_22_230225_create_sales_characters
+Migrated:  2021_04_22_230225_create_sales_characters (538.36ms)
+Migrating: 2021_04_29_175640_add_user_birthday
+Migrated:  2021_04_29_175640_add_user_birthday (763.68ms)
+Migrating: 2021_05_19_123518_change_birthday_column_type
+Migrated:  2021_05_19_123518_change_birthday_column_type (552.85ms)
+🌱 Adding site settings and default data...
+time="2025-11-25T22:11:12+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_db  Running
+ Container lorekeeper_redis  Running
+*********************
+* ADD SITE SETTINGS *
+*********************
+
+Adding site settings...existing entries will be skipped.
+
+Added:   is_registration_open / Default: 1
+Added:   transfer_cooldown / Default: 0
+Added:   open_transfers_queue / Default: 0
+Added:   is_prompts_open / Default: 1
+Added:   is_claims_open / Default: 1
+Added:   is_reports_open / Default: 1
+Added:   is_myos_open / Default: 1
+Added:   is_design_updates_open / Default: 1
+Added:   blacklist_privacy / Default: 0
+Added:   blacklist_link / Default: 0
+Added:   blacklist_key / Default: 0
+Added:   design_votes_needed / Default: 3
+Added:   admin_user / Default: 1
+Added:   gallery_submissions_open / Default: 1
+Added:   gallery_submissions_require_approval / Default: 1
+Added:   gallery_submissions_reward_currency / Default: 0
+Added:   group_currency / Default: 1
+
+Site settings up to date!
+time="2025-11-25T22:11:15+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+******************
+* ADD SITE PAGES *
+******************
+
+Adding site pages...existing entries will be skipped.
+
+Added:   Terms of Service
+Added:   Privacy Policy
+Added:   About
+Added:   Credits
+time="2025-11-25T22:11:17+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+***********************
+* COPY DEFAULT IMAGES *
+***********************
+
+Copying image: header.png
+
+Copying image: characters.png
+
+Copying image: account.png
+
+Copying image: inventory.png
+
+Copying image: currency.png
+
+Copying image: myo.png
+
+Copying image: myo-th.png
+
+Copying image: meta-image.png
+
+Copying image: watermark.png
+
+Copying image: content_warning.png
+
+Done!
+🔗 Creating storage symlink...
+time="2025-11-25T22:11:18+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_db  Running
+ Container lorekeeper_redis  Running
+The [/var/www/html/public/storage] link has been connected to [/var/www/html/storage/app/public].
+The links have been created.
+⚡ Caching configuration...
+time="2025-11-25T22:11:20+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+Configuration cache cleared!
+Configuration cached successfully!
+time="2025-11-25T22:11:22+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+Route cache cleared!
+Routes cached successfully!
+time="2025-11-25T22:11:24+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Container lorekeeper_db  Running
+ Container lorekeeper_redis  Running
+Compiled views cleared!
+Blade templates cached successfully!
+🚀 Starting all services...
+time="2025-11-25T22:11:25+07:00" level=warning msg="/home/rek/Projects/ratbase/lorekeeper/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ webserver Pulling 
+ mailhog Pulling 
+ df20fa9351a1 Pulling fs layer 
+ ed8968b2872e Pulling fs layer 
+ a92cc7c5fd73 Pulling fs layer 
+ f17c8f1adafb Pulling fs layer 
+ 03954754c53a Pulling fs layer 
+ 60493946972a Pulling fs layer 
+ 368ee3bc1dbb Pulling fs layer 
+ 03954754c53a Waiting 
+ 60493946972a Waiting 
+ 368ee3bc1dbb Waiting 
+ f17c8f1adafb Waiting 
+ 2d35ebdb57d9 Already exists 
+ 8f6a6833e95d Already exists 
+ 194fa24e147d Already exists 
+ 3eaba6cd10a3 Already exists 
+ df413d6ebdc8 Already exists 
+ d9a55dab5954 Already exists 
+ ff8a36d5502a Already exists 
+ bdabb0d44271 Pulling fs layer 
+ bdabb0d44271 Waiting 
+ a92cc7c5fd73 Downloading     155B/155B
+ a92cc7c5fd73 Verifying Checksum 
+ a92cc7c5fd73 Download complete 
+ ed8968b2872e Downloading  3.669kB/282.6kB
+ df20fa9351a1 Downloading  28.31kB/2.798MB
+ ed8968b2872e Downloading  89.92kB/282.6kB
+ df20fa9351a1 Downloading  205.6kB/2.798MB
+ ed8968b2872e Downloading  282.6kB/282.6kB
+ ed8968b2872e Download complete 
+ df20fa9351a1 Downloading  626.4kB/2.798MB
+ df20fa9351a1 Downloading   1.85MB/2.798MB
+ df20fa9351a1 Verifying Checksum 
+ df20fa9351a1 Download complete 
+ df20fa9351a1 Extracting  32.77kB/2.798MB
+ df20fa9351a1 Extracting  2.798MB/2.798MB
+ df20fa9351a1 Pull complete 
+ ed8968b2872e Extracting  32.77kB/282.6kB
+ ed8968b2872e Extracting  282.6kB/282.6kB
+ ed8968b2872e Extracting  282.6kB/282.6kB
+ ed8968b2872e Pull complete 
+ a92cc7c5fd73 Extracting     155B/155B
+ a92cc7c5fd73 Extracting     155B/155B
+ a92cc7c5fd73 Pull complete 
+ 03954754c53a Downloading     126B/126B
+ 03954754c53a Download complete 
+ f17c8f1adafb Downloading  540.7kB/132.5MB
+ f17c8f1adafb Downloading  1.619MB/132.5MB
+ f17c8f1adafb Downloading  4.811MB/132.5MB
+ 60493946972a Downloading  101.3kB/9.946MB
+ f17c8f1adafb Downloading  8.023MB/132.5MB
+ 60493946972a Downloading  202.4kB/9.946MB
+ f17c8f1adafb Downloading  11.24MB/132.5MB
+ f17c8f1adafb Downloading  14.45MB/132.5MB
+ 60493946972a Downloading  417.5kB/9.946MB
+ 60493946972a Downloading  641.8kB/9.946MB
+ f17c8f1adafb Downloading  22.46MB/132.5MB
+ f17c8f1adafb Downloading  26.21MB/132.5MB
+ 60493946972a Downloading  870.8kB/9.946MB
+ f17c8f1adafb Downloading  38.52MB/132.5MB
+ f17c8f1adafb Downloading   44.4MB/132.5MB
+ 60493946972a Downloading  1.319MB/9.946MB
+ f17c8f1adafb Downloading  48.14MB/132.5MB
+ 60493946972a Downloading  1.428MB/9.946MB
+ f17c8f1adafb Downloading  52.43MB/132.5MB
+ 60493946972a Downloading  1.658MB/9.946MB
+ f17c8f1adafb Downloading  58.85MB/132.5MB
+ 368ee3bc1dbb Downloading     934B/1.26kB
+ 368ee3bc1dbb Downloading   1.26kB/1.26kB
+ 368ee3bc1dbb Verifying Checksum 
+ 368ee3bc1dbb Download complete 
+ 60493946972a Downloading  1.887MB/9.946MB
+ f17c8f1adafb Downloading  67.44MB/132.5MB
+ f17c8f1adafb Downloading  71.17MB/132.5MB
+ 60493946972a Downloading  2.116MB/9.946MB
+ 60493946972a Downloading   2.46MB/9.946MB
+ f17c8f1adafb Downloading  74.94MB/132.5MB
+ 60493946972a Downloading  2.804MB/9.946MB
+ f17c8f1adafb Downloading  81.34MB/132.5MB
+ f17c8f1adafb Downloading  85.11MB/132.5MB
+ 60493946972a Downloading  3.142MB/9.946MB
+ f17c8f1adafb Downloading  88.87MB/132.5MB
+ 60493946972a Downloading  3.371MB/9.946MB
+ f17c8f1adafb Downloading  91.55MB/132.5MB
+ 60493946972a Downloading  3.715MB/9.946MB
+ f17c8f1adafb Downloading  94.75MB/132.5MB
+ 60493946972a Downloading  4.059MB/9.946MB
+ f17c8f1adafb Downloading  99.57MB/132.5MB
+ 60493946972a Downloading  4.518MB/9.946MB
+ f17c8f1adafb Downloading  103.3MB/132.5MB
+ 60493946972a Downloading  4.747MB/9.946MB
+ f17c8f1adafb Downloading  107.1MB/132.5MB
+ 60493946972a Downloading  5.321MB/9.946MB
+ f17c8f1adafb Downloading  110.3MB/132.5MB
+ 60493946972a Downloading  5.665MB/9.946MB
+ f17c8f1adafb Downloading    114MB/132.5MB
+ 60493946972a Downloading  6.353MB/9.946MB
+ f17c8f1adafb Downloading    121MB/132.5MB
+ 60493946972a Downloading  6.917MB/9.946MB
+ f17c8f1adafb Downloading    122MB/132.5MB
+ 60493946972a Downloading  7.365MB/9.946MB
+ f17c8f1adafb Downloading  126.3MB/132.5MB
+ bdabb0d44271 Downloading  172.8kB/16.97MB
+ 60493946972a Downloading  7.699MB/9.946MB
+ bdabb0d44271 Downloading  344.1kB/16.97MB
+ f17c8f1adafb Downloading  129.5MB/132.5MB
+ f17c8f1adafb Verifying Checksum 
+ f17c8f1adafb Download complete 
+ 60493946972a Downloading  8.502MB/9.946MB
+ f17c8f1adafb Extracting  557.1kB/132.5MB
+ bdabb0d44271 Downloading  888.5kB/16.97MB
+ 60493946972a Downloading  9.291MB/9.946MB
+ f17c8f1adafb Extracting  2.785MB/132.5MB
+ bdabb0d44271 Downloading  2.666MB/16.97MB
+ 60493946972a Verifying Checksum 
+ 60493946972a Download complete 
+ f17c8f1adafb Extracting   9.47MB/132.5MB
+ bdabb0d44271 Downloading  6.434MB/16.97MB
+ f17c8f1adafb Extracting  13.93MB/132.5MB
+ bdabb0d44271 Downloading   8.77MB/16.97MB
+ f17c8f1adafb Extracting  14.48MB/132.5MB
+ bdabb0d44271 Downloading  13.94MB/16.97MB
+ f17c8f1adafb Extracting  18.38MB/132.5MB
+ f17c8f1adafb Extracting  21.73MB/132.5MB
+ f17c8f1adafb Extracting  25.62MB/132.5MB
+ f17c8f1adafb Extracting  29.52MB/132.5MB
+ f17c8f1adafb Extracting  33.42MB/132.5MB
+ f17c8f1adafb Extracting  36.77MB/132.5MB
+ bdabb0d44271 Downloading  14.84MB/16.97MB
+ f17c8f1adafb Extracting  40.67MB/132.5MB
+ bdabb0d44271 Verifying Checksum 
+ bdabb0d44271 Download complete 
+ bdabb0d44271 Extracting  196.6kB/16.97MB
+ f17c8f1adafb Extracting  44.56MB/132.5MB
+ bdabb0d44271 Extracting  4.719MB/16.97MB
+ f17c8f1adafb Extracting  48.46MB/132.5MB
+ bdabb0d44271 Extracting  9.241MB/16.97MB
+ f17c8f1adafb Extracting  52.36MB/132.5MB
+ bdabb0d44271 Extracting  13.37MB/16.97MB
+ f17c8f1adafb Extracting  56.82MB/132.5MB
+ f17c8f1adafb Extracting   63.5MB/132.5MB
+ bdabb0d44271 Extracting  16.91MB/16.97MB
+ bdabb0d44271 Extracting  16.97MB/16.97MB
+ f17c8f1adafb Extracting  68.52MB/132.5MB
+ f17c8f1adafb Extracting  71.86MB/132.5MB
+ f17c8f1adafb Extracting  80.22MB/132.5MB
+ f17c8f1adafb Extracting  84.12MB/132.5MB
+ f17c8f1adafb Extracting  89.69MB/132.5MB
+ bdabb0d44271 Pull complete 
+ f17c8f1adafb Extracting  95.26MB/132.5MB
+ webserver Pulled 
+ f17c8f1adafb Extracting  100.3MB/132.5MB
+ f17c8f1adafb Extracting    107MB/132.5MB
+ f17c8f1adafb Extracting  112.5MB/132.5MB
+ f17c8f1adafb Extracting  115.3MB/132.5MB
+ f17c8f1adafb Extracting    117MB/132.5MB
+ f17c8f1adafb Extracting  117.5MB/132.5MB
+ f17c8f1adafb Extracting  118.1MB/132.5MB
+ f17c8f1adafb Extracting  119.2MB/132.5MB
+ f17c8f1adafb Extracting  120.9MB/132.5MB
+ f17c8f1adafb Extracting    122MB/132.5MB
+ f17c8f1adafb Extracting  123.7MB/132.5MB
+ f17c8f1adafb Extracting  124.8MB/132.5MB
+ f17c8f1adafb Extracting  126.5MB/132.5MB
+ f17c8f1adafb Extracting  127.6MB/132.5MB
+ f17c8f1adafb Extracting  128.1MB/132.5MB
+ f17c8f1adafb Extracting  129.8MB/132.5MB
+ f17c8f1adafb Extracting  130.9MB/132.5MB
+ f17c8f1adafb Extracting  132.5MB/132.5MB
+ f17c8f1adafb Pull complete 
+ 03954754c53a Extracting     126B/126B
+ 03954754c53a Extracting     126B/126B
+ 03954754c53a Pull complete 
+ 60493946972a Extracting  131.1kB/9.946MB
+ 60493946972a Extracting  2.884MB/9.946MB
+ 60493946972a Extracting  9.946MB/9.946MB
+ 60493946972a Extracting  9.946MB/9.946MB
+ 60493946972a Pull complete 
+ 368ee3bc1dbb Extracting   1.26kB/1.26kB
+ 368ee3bc1dbb Extracting   1.26kB/1.26kB
+ 368ee3bc1dbb Pull complete 
+ mailhog Pulled 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.57kB done
+#1 DONE 0.0s
+
+#2 [scheduler internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.10kB done
+#2 DONE 0.0s
+
+#3 [scheduler internal] load metadata for docker.io/library/php:8.1-fpm
+#3 ...
+
+#4 [scheduler internal] load metadata for docker.io/library/composer:2
+#4 DONE 0.9s
+
+#3 [scheduler internal] load metadata for docker.io/library/php:8.1-fpm
+#3 DONE 1.0s
+
+#5 [scheduler internal] load .dockerignore
+#5 transferring context: 225B done
+#5 DONE 0.0s
+
+#6 [queue] FROM docker.io/library/composer:2@sha256:8f3b7d97cd7436dae41d6af0dd6a53853779040ecac26e65544fc31746035705
+#6 DONE 0.0s
+
+#7 [queue stage-0 1/8] FROM docker.io/library/php:8.1-fpm@sha256:d0e9f330031816ec71ce0b3c5ecfaf968e15060181811c7ff20c9ad6364e5f29
+#7 DONE 0.0s
+
+#8 [queue internal] load build context
+#8 transferring context: 1.96MB 0.1s done
+#8 transferring context: 1.96MB 0.1s done
+#8 DONE 0.1s
+
+#9 [scheduler stage-0 2/8] WORKDIR /var/www/html
+#9 CACHED
+
+#10 [scheduler stage-0 3/8] RUN apt-get update && apt-get install -y     git     curl     libpng-dev     libonig-dev     libxml2-dev     zip     unzip     libzip-dev     libfreetype6-dev     libjpeg62-turbo-dev     libwebp-dev     libxpm-dev     default-mysql-client     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [scheduler stage-0 4/8] RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+#11 CACHED
+
+#12 [scheduler stage-0 5/8] COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+#12 CACHED
+
+#13 [scheduler stage-0 6/8] COPY . /var/www/html
+#13 DONE 0.4s
+
+#14 [scheduler stage-0 7/8] RUN chown -R www-data:www-data /var/www/html     && chmod -R 755 /var/www/html/storage     && chmod -R 755 /var/www/html/bootstrap/cache
+#14 DONE 0.4s
+
+#15 [queue stage-0 8/8] RUN composer install --no-dev --optimize-autoloader --no-interaction
+#15 0.291 Installing dependencies from lock file
+#15 0.296 Verifying lock file contents can be installed on current platform.
+#15 0.311 Package operations: 94 installs, 0 updates, 0 removals
+#15 0.313   - Downloading boxconnect/deviant-php (dev-master a9a56bb)
+#15 0.314   - Downloading carbonphp/carbon-doctrine-types (1.0.0)
+#15 0.315   - Downloading doctrine/deprecations (1.1.5)
+#15 0.315   - Downloading doctrine/event-manager (1.2.0)
+#15 0.315   - Downloading doctrine/cache (2.2.0)
+#15 0.315   - Downloading doctrine/dbal (2.13.9)
+#15 0.316   - Downloading doctrine/inflector (2.1.0)
+#15 0.316   - Downloading doctrine/lexer (1.2.3)
+#15 0.316   - Downloading dragonmantank/cron-expression (v3.5.0)
+#15 0.316   - Downloading symfony/polyfill-iconv (v1.33.0)
+#15 0.317   - Downloading symfony/polyfill-mbstring (v1.33.0)
+#15 0.317   - Downloading erusev/parsedown (1.7.4)
+#15 0.317   - Downloading ezyang/htmlpurifier (v4.19.0)
+#15 0.317   - Downloading voku/portable-ascii (1.6.1)
+#15 0.318   - Downloading symfony/polyfill-php80 (v1.33.0)
+#15 0.318   - Downloading symfony/polyfill-ctype (v1.33.0)
+#15 0.318   - Downloading phpoption/phpoption (1.9.4)
+#15 0.318   - Downloading graham-campbell/result-type (v1.1.3)
+#15 0.318   - Downloading vlucas/phpdotenv (v5.6.2)
+#15 0.318   - Downloading symfony/css-selector (v6.4.24)
+#15 0.319   - Downloading tijsverkoyen/css-to-inline-styles (v2.3.0)
+#15 0.319   - Downloading symfony/var-dumper (v5.4.48)
+#15 0.319   - Downloading symfony/deprecation-contracts (v3.6.0)
+#15 0.319   - Downloading symfony/routing (v5.4.48)
+#15 0.319   - Downloading symfony/process (v5.4.47)
+#15 0.319   - Downloading symfony/polyfill-intl-normalizer (v1.33.0)
+#15 0.319   - Downloading symfony/polyfill-intl-idn (v1.33.0)
+#15 0.320   - Downloading symfony/mime (v5.4.45)
+#15 0.320   - Downloading symfony/polyfill-php73 (v1.33.0)
+#15 0.320   - Downloading symfony/http-foundation (v5.4.50)
+#15 0.320   - Downloading psr/event-dispatcher (1.0.0)
+#15 0.320   - Downloading symfony/event-dispatcher-contracts (v3.6.0)
+#15 0.320   - Downloading symfony/event-dispatcher (v6.4.25)
+#15 0.320   - Downloading psr/log (2.0.0)
+#15 0.321   - Downloading symfony/error-handler (v5.4.46)
+#15 0.321   - Downloading symfony/http-kernel (v5.4.50)
+#15 0.321   - Downloading symfony/finder (v5.4.45)
+#15 0.321   - Downloading symfony/polyfill-intl-grapheme (v1.33.0)
+#15 0.321   - Downloading symfony/string (v6.4.26)
+#15 0.321   - Downloading psr/container (1.1.2)
+#15 0.321   - Downloading symfony/service-contracts (v3.6.1)
+#15 0.322   - Downloading symfony/console (v5.4.47)
+#15 0.322   - Downloading egulias/email-validator (2.1.25)
+#15 0.322   - Downloading swiftmailer/swiftmailer (v6.3.0)
+#15 0.322   - Downloading ramsey/collection (2.1.1)
+#15 0.322   - Downloading brick/math (0.13.1)
+#15 0.322   - Downloading ramsey/uuid (4.9.1)
+#15 0.323   - Downloading psr/simple-cache (1.0.1)
+#15 0.323   - Downloading opis/closure (3.7.0)
+#15 0.323   - Downloading symfony/translation-contracts (v3.6.1)
+#15 0.323   - Downloading symfony/translation (v6.4.26)
+#15 0.323   - Downloading psr/clock (1.0.0)
+#15 0.323   - Downloading nesbot/carbon (2.73.0)
+#15 0.324   - Downloading monolog/monolog (2.10.0)
+#15 0.324   - Downloading league/mime-type-detection (1.16.0)
+#15 0.324   - Downloading league/flysystem (1.1.10)
+#15 0.324   - Downloading nette/utils (v4.0.9)
+#15 0.324   - Downloading nette/schema (v1.3.3)
+#15 0.325   - Downloading dflydev/dot-access-data (v3.0.3)
+#15 0.325   - Downloading league/config (v1.2.0)
+#15 0.325   - Downloading league/commonmark (2.7.1)
+#15 0.325   - Downloading laravel/serializable-closure (v1.3.7)
+#15 0.325   - Downloading laravel/framework (8.x-dev 863d928)
+#15 0.326   - Downloading fideloper/proxy (4.4.2)
+#15 0.326   - Downloading guzzlehttp/promises (2.3.0)
+#15 0.326   - Downloading ralouphie/getallheaders (3.0.3)
+#15 0.326   - Downloading psr/http-message (2.0)
+#15 0.326   - Downloading psr/http-factory (1.1.0)
+#15 0.326   - Downloading guzzlehttp/psr7 (2.8.0)
+#15 0.327   - Downloading intervention/image (2.7.2)
+#15 0.327   - Downloading laracasts/flash (3.2.4)
+#15 0.327   - Downloading laravel/helpers (v1.8.1)
+#15 0.327   - Downloading paragonie/random_compat (v9.99.100)
+#15 0.327   - Downloading paragonie/constant_time_encoding (v3.1.3)
+#15 0.327   - Downloading phpseclib/phpseclib (3.0.47)
+#15 0.327   - Downloading psr/http-client (1.0.3)
+#15 0.328   - Downloading guzzlehttp/guzzle (7.10.0)
+#15 0.328   - Downloading league/oauth1-client (v1.11.0)
+#15 0.328   - Downloading firebase/php-jwt (v6.11.1)
+#15 0.328   - Downloading laravel/socialite (v5.23.1)
+#15 0.328   - Downloading nikic/php-parser (v5.6.2)
+#15 0.328   - Downloading psy/psysh (v0.12.14)
+#15 0.329   - Downloading laravel/tinker (v2.10.1)
+#15 0.329   - Downloading laravel/ui (v3.4.6)
+#15 0.329   - Downloading laravelcollective/html (v6.4.1)
+#15 0.329   - Downloading socialiteproviders/manager (v4.8.1)
+#15 0.329   - Downloading socialiteproviders/deviantart (4.1.0)
+#15 0.329   - Downloading socialiteproviders/imgur (4.1.0)
+#15 0.330   - Downloading socialiteproviders/instagram (4.1.0)
+#15 0.330   - Downloading socialiteproviders/tumblr (4.1.0)
+#15 0.330   - Downloading socialiteproviders/twitch (5.4.0)
+#15 0.330   - Downloading socialiteproviders/twitter (4.1.2)
+#15 0.330   - Downloading spatie/laravel-package-tools (1.12.1)
+#15 0.330   - Downloading spatie/laravel-honeypot (4.6.1)
+#15 0.336   0/94 [>---------------------------]   0%
+#15 1.989   1/94 [>---------------------------]   1%
+#15 2.546  10/94 [==>-------------------------]  10%
+#15 3.349  20/94 [=====>----------------------]  21%
+#15 4.371  31/94 [=========>------------------]  32%
+#15 5.218  41/94 [============>---------------]  43%
+#15 5.789  47/94 [==============>-------------]  50%
+#15 6.780  57/94 [================>-----------]  60%
+#15 7.595  67/94 [===================>--------]  71%
+#15 8.497  77/94 [======================>-----]  81%
+#15 9.279  86/94 [=========================>--]  91%
+#15 10.33  94/94 [============================] 100%
+#15 10.33   - Installing boxconnect/deviant-php (dev-master a9a56bb): Extracting archive
+#15 10.33   - Installing carbonphp/carbon-doctrine-types (1.0.0): Extracting archive
+#15 10.33   - Installing doctrine/deprecations (1.1.5): Extracting archive
+#15 10.33   - Installing doctrine/event-manager (1.2.0): Extracting archive
+#15 10.33   - Installing doctrine/cache (2.2.0): Extracting archive
+#15 10.34   - Installing doctrine/dbal (2.13.9): Extracting archive
+#15 10.34   - Installing doctrine/inflector (2.1.0): Extracting archive
+#15 10.34   - Installing doctrine/lexer (1.2.3): Extracting archive
+#15 10.34   - Installing dragonmantank/cron-expression (v3.5.0): Extracting archive
+#15 10.34   - Installing symfony/polyfill-iconv (v1.33.0): Extracting archive
+#15 10.34   - Installing symfony/polyfill-mbstring (v1.33.0): Extracting archive
+#15 10.34   - Installing erusev/parsedown (1.7.4): Extracting archive
+#15 10.34   - Installing ezyang/htmlpurifier (v4.19.0): Extracting archive
+#15 10.35   - Installing voku/portable-ascii (1.6.1): Extracting archive
+#15 10.35   - Installing symfony/polyfill-php80 (v1.33.0): Extracting archive
+#15 10.35   - Installing symfony/polyfill-ctype (v1.33.0): Extracting archive
+#15 10.35   - Installing phpoption/phpoption (1.9.4): Extracting archive
+#15 10.35   - Installing graham-campbell/result-type (v1.1.3): Extracting archive
+#15 10.35   - Installing vlucas/phpdotenv (v5.6.2): Extracting archive
+#15 10.35   - Installing symfony/css-selector (v6.4.24): Extracting archive
+#15 10.35   - Installing tijsverkoyen/css-to-inline-styles (v2.3.0): Extracting archive
+#15 10.35   - Installing symfony/var-dumper (v5.4.48): Extracting archive
+#15 10.35   - Installing symfony/deprecation-contracts (v3.6.0): Extracting archive
+#15 10.35   - Installing symfony/routing (v5.4.48): Extracting archive
+#15 10.35   - Installing symfony/process (v5.4.47): Extracting archive
+#15 10.35   - Installing symfony/polyfill-intl-normalizer (v1.33.0): Extracting archive
+#15 10.35   - Installing symfony/polyfill-intl-idn (v1.33.0): Extracting archive
+#15 10.35   - Installing symfony/mime (v5.4.45): Extracting archive
+#15 10.35   - Installing symfony/polyfill-php73 (v1.33.0): Extracting archive
+#15 10.35   - Installing symfony/http-foundation (v5.4.50): Extracting archive
+#15 10.35   - Installing psr/event-dispatcher (1.0.0): Extracting archive
+#15 10.35   - Installing symfony/event-dispatcher-contracts (v3.6.0): Extracting archive
+#15 10.35   - Installing symfony/event-dispatcher (v6.4.25): Extracting archive
+#15 10.35   - Installing psr/log (2.0.0): Extracting archive
+#15 10.35   - Installing symfony/error-handler (v5.4.46): Extracting archive
+#15 10.35   - Installing symfony/http-kernel (v5.4.50): Extracting archive
+#15 10.35   - Installing symfony/finder (v5.4.45): Extracting archive
+#15 10.35   - Installing symfony/polyfill-intl-grapheme (v1.33.0): Extracting archive
+#15 10.35   - Installing symfony/string (v6.4.26): Extracting archive
+#15 10.35   - Installing psr/container (1.1.2): Extracting archive
+#15 10.35   - Installing symfony/service-contracts (v3.6.1): Extracting archive
+#15 10.35   - Installing symfony/console (v5.4.47): Extracting archive
+#15 10.35   - Installing egulias/email-validator (2.1.25): Extracting archive
+#15 10.35   - Installing swiftmailer/swiftmailer (v6.3.0): Extracting archive
+#15 10.35   - Installing ramsey/collection (2.1.1): Extracting archive
+#15 10.35   - Installing brick/math (0.13.1): Extracting archive
+#15 10.35   - Installing ramsey/uuid (4.9.1): Extracting archive
+#15 10.35   - Installing psr/simple-cache (1.0.1): Extracting archive
+#15 10.36   - Installing opis/closure (3.7.0): Extracting archive
+#15 10.36   - Installing symfony/translation-contracts (v3.6.1): Extracting archive
+#15 10.36   - Installing symfony/translation (v6.4.26): Extracting archive
+#15 10.36   - Installing psr/clock (1.0.0): Extracting archive
+#15 10.36   - Installing nesbot/carbon (2.73.0): Extracting archive
+#15 10.36   - Installing monolog/monolog (2.10.0): Extracting archive
+#15 10.36   - Installing league/mime-type-detection (1.16.0): Extracting archive
+#15 10.36   - Installing league/flysystem (1.1.10): Extracting archive
+#15 10.36   - Installing nette/utils (v4.0.9): Extracting archive
+#15 10.36   - Installing nette/schema (v1.3.3): Extracting archive
+#15 10.36   - Installing dflydev/dot-access-data (v3.0.3): Extracting archive
+#15 10.36   - Installing league/config (v1.2.0): Extracting archive
+#15 10.36   - Installing league/commonmark (2.7.1): Extracting archive
+#15 10.36   - Installing laravel/serializable-closure (v1.3.7): Extracting archive
+#15 10.36   - Installing laravel/framework (8.x-dev 863d928): Extracting archive
+#15 10.36   - Installing fideloper/proxy (4.4.2): Extracting archive
+#15 10.36   - Installing guzzlehttp/promises (2.3.0): Extracting archive
+#15 10.36   - Installing ralouphie/getallheaders (3.0.3): Extracting archive
+#15 10.36   - Installing psr/http-message (2.0): Extracting archive
+#15 10.36   - Installing psr/http-factory (1.1.0): Extracting archive
+#15 10.36   - Installing guzzlehttp/psr7 (2.8.0): Extracting archive
+#15 10.36   - Installing intervention/image (2.7.2): Extracting archive
+#15 10.36   - Installing laracasts/flash (3.2.4): Extracting archive
+#15 10.36   - Installing laravel/helpers (v1.8.1): Extracting archive
+#15 10.36   - Installing paragonie/random_compat (v9.99.100): Extracting archive
+#15 10.36   - Installing paragonie/constant_time_encoding (v3.1.3): Extracting archive
+#15 10.36   - Installing phpseclib/phpseclib (3.0.47): Extracting archive
+#15 10.36   - Installing psr/http-client (1.0.3): Extracting archive
+#15 10.36   - Installing guzzlehttp/guzzle (7.10.0): Extracting archive
+#15 10.36   - Installing league/oauth1-client (v1.11.0): Extracting archive
+#15 10.36   - Installing firebase/php-jwt (v6.11.1): Extracting archive
+#15 10.36   - Installing laravel/socialite (v5.23.1): Extracting archive
+#15 10.36   - Installing nikic/php-parser (v5.6.2): Extracting archive
+#15 10.36   - Installing psy/psysh (v0.12.14): Extracting archive
+#15 10.36   - Installing laravel/tinker (v2.10.1): Extracting archive
+#15 10.36   - Installing laravel/ui (v3.4.6): Extracting archive
+#15 10.36   - Installing laravelcollective/html (v6.4.1): Extracting archive
+#15 10.36   - Installing socialiteproviders/manager (v4.8.1): Extracting archive
+#15 10.36   - Installing socialiteproviders/deviantart (4.1.0): Extracting archive
+#15 10.36   - Installing socialiteproviders/imgur (4.1.0): Extracting archive
+#15 10.36   - Installing socialiteproviders/instagram (4.1.0): Extracting archive
+#15 10.36   - Installing socialiteproviders/tumblr (4.1.0): Extracting archive
+#15 10.36   - Installing socialiteproviders/twitch (5.4.0): Extracting archive
+#15 10.37   - Installing socialiteproviders/twitter (4.1.2): Extracting archive
+#15 10.37   - Installing spatie/laravel-package-tools (1.12.1): Extracting archive
+#15 10.37   - Installing spatie/laravel-honeypot (4.6.1): Extracting archive
+#15 10.38   0/94 [>---------------------------]   0%
+#15 10.52  25/94 [=======>--------------------]  26%
+#15 10.63  42/94 [============>---------------]  44%
+#15 10.74  58/94 [=================>----------]  61%
+#15 10.85  70/94 [====================>-------]  74%
+#15 10.97  85/94 [=========================>--]  90%
+#15 11.03  94/94 [============================] 100%
+#15 12.02 Package doctrine/cache is abandoned, you should avoid using it. No replacement was suggested.
+#15 12.02 Package laravelcollective/html is abandoned, you should avoid using it. Use spatie/laravel-html instead.
+#15 12.02 Package swiftmailer/swiftmailer is abandoned, you should avoid using it. Use symfony/mailer instead.
+#15 12.02 Package fzaninotto/faker is abandoned, you should avoid using it. No replacement was suggested.
+#15 12.02 Generating optimized autoload files
+#15 13.25 > Illuminate\Foundation\ComposerScripts::postAutoloadDump
+#15 13.26 > @php artisan package:discover --ansi
+#15 13.36 Discovered Package: [32mfideloper/proxy[39m
+#15 13.36 Discovered Package: [32mintervention/image[39m
+#15 13.36 Discovered Package: [32mlaracasts/flash[39m
+#15 13.36 Discovered Package: [32mlaravel/socialite[39m
+#15 13.36 Discovered Package: [32mlaravel/tinker[39m
+#15 13.36 Discovered Package: [32mlaravel/ui[39m
+#15 13.36 Discovered Package: [32mlaravelcollective/html[39m
+#15 13.36 Discovered Package: [32mnesbot/carbon[39m
+#15 13.36 Discovered Package: [32msocialiteproviders/manager[39m
+#15 13.36 Discovered Package: [32mspatie/laravel-honeypot[39m
+#15 13.36 [32mPackage manifest generated successfully.[39m
+#15 13.36 52 packages you are using are looking for funding.
+#15 13.36 Use the `composer fund` command to find out more!
+#15 DONE 14.0s
+
+#16 [scheduler] exporting to image
+#16 exporting layers
+#16 ...
+
+#17 [queue] exporting to image
+#17 exporting layers 1.8s done
+#17 writing image sha256:a4f3ff3b67cfb60c61bb7e6ca4fb62abcc66d388cbde4eee99856939f09cdd55 0.0s done
+#17 naming to docker.io/library/lorekeeper-queue 0.1s done
+#17 DONE 2.0s
+
+#16 [scheduler] exporting to image
+#16 exporting layers 1.8s done
+#16 writing image sha256:3606206d68087fa400ae25969806e02d19fbe2def4fa0d367025a46944c8ea97 0.0s done
+#16 naming to docker.io/library/lorekeeper-scheduler 0.0s done
+#16 DONE 2.0s
+
+#18 [scheduler] resolving provenance for metadata file
+#18 DONE 0.0s
+
+#19 [queue] resolving provenance for metadata file
+#19 DONE 0.0s
+ lorekeeper-queue  Built
+ lorekeeper-scheduler  Built
+ Container lorekeeper_mailhog  Creating
+ Container lorekeeper_redis  Running
+ Container lorekeeper_db  Running
+ Container lorekeeper_scheduler  Creating
+ Container lorekeeper_queue  Creating
+ Container lorekeeper_app  Creating
+ Container lorekeeper_queue  Created
+ Container lorekeeper_app  Created
+ Container lorekeeper_webserver  Creating
+ Container lorekeeper_scheduler  Created
+ Container lorekeeper_mailhog  Created
+ Container lorekeeper_webserver  Created
+ Container lorekeeper_mailhog  Starting
+ Container lorekeeper_db  Waiting
+ Container lorekeeper_redis  Waiting
+ Container lorekeeper_db  Waiting
+ Container lorekeeper_db  Waiting
+ Container lorekeeper_redis  Waiting
+ Container lorekeeper_redis  Waiting
+ Container lorekeeper_mailhog  Started
+ Container lorekeeper_redis  Healthy
+ Container lorekeeper_db  Healthy
+ Container lorekeeper_scheduler  Starting
+ Container lorekeeper_db  Healthy
+ Container lorekeeper_redis  Healthy
+ Container lorekeeper_db  Healthy
+ Container lorekeeper_redis  Healthy
+ Container lorekeeper_queue  Starting
+ Container lorekeeper_app  Starting
+ Container lorekeeper_scheduler  Started
+ Container lorekeeper_queue  Started
+ Container lorekeeper_app  Started
+ Container lorekeeper_webserver  Starting
+ Container lorekeeper_webserver  Started
+
+===========================================
+✅ Setup complete!
+===========================================
+
+📋 Services running:
+   - Web Application: http://localhost
+   - MailHog (Email): http://localhost:8025
+   - Database: localhost:3306
+   - Redis: localhost:6379
+
+🔧 Next steps:
+   1. Run: docker-compose exec app php artisan setup-admin-user
+      (to create your admin account)
+   2. Configure your social OAuth credentials in .env
+   3. Restart containers: docker-compose restart
+
+📚 Useful commands:
+   - View logs: docker-compose logs -f
+   - Stop services: docker-compose down
+   - Restart services: docker-compose restart
+   - Run artisan: docker-compose exec app php artisan [command]
+   - Access shell: docker-compose exec app bash
+

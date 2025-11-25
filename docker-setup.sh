@@ -31,20 +31,6 @@ else
     echo "⚠️  .env file already exists, skipping..."
 fi
 
-# Generate APP_KEY if not set
-if ! grep -q "APP_KEY=base64:" .env; then
-    echo "🔑 Generating application key..."
-    
-    # Build app container first to generate key
-    docker-compose build app
-    
-    # Generate key
-    docker-compose run --rm app php artisan key:generate
-    echo "✅ Application key generated"
-else
-    echo "✅ Application key already set"
-fi
-
 # Create necessary directories
 echo "📁 Creating necessary directories..."
 mkdir -p storage/framework/{sessions,views,cache}
@@ -53,11 +39,45 @@ mkdir -p bootstrap/cache
 chmod -R 775 storage bootstrap/cache
 echo "✅ Directories created"
 
+# Build app container
+echo "🔨 Building Docker images..."
+docker-compose build app
+echo "✅ Docker images built"
+
 # Start Docker containers
 echo "🐳 Starting Docker containers..."
 docker-compose up -d db redis
 echo "⏳ Waiting for database to be ready..."
-sleep 10
+# Wait up to 60 seconds for database to become healthy
+timeout=60
+elapsed=0
+while [ $elapsed -lt $timeout ]; do
+    if docker-compose ps db | grep -q "healthy"; then
+        echo "✅ Database is ready!"
+        break
+    fi
+    echo "   Still waiting... ($elapsed seconds)"
+    sleep 5
+    elapsed=$((elapsed + 5))
+done
+
+if [ $elapsed -ge $timeout ]; then
+    echo "⚠️  Database health check timeout, but continuing anyway..."
+fi
+
+# Install composer dependencies FIRST
+echo "📦 Installing Composer dependencies..."
+docker-compose run --rm app composer install --no-interaction --prefer-dist
+echo "✅ Composer dependencies installed"
+
+# Generate APP_KEY if not set (after composer install)
+if ! grep -q "APP_KEY=base64:" .env; then
+    echo "🔑 Generating application key..."
+    docker-compose run --rm app php artisan key:generate
+    echo "✅ Application key generated"
+else
+    echo "✅ Application key already set"
+fi
 
 # Run migrations
 echo "🔄 Running database migrations..."
