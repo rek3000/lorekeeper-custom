@@ -1,0 +1,70 @@
+ARG PHP_VERSION=8.1
+
+FROM php:${PHP_VERSION}-fpm
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libzip-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
+    libxpm-dev \
+    default-mysql-client \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip opcache
+
+# Install opcache for production performance
+RUN docker-php-ext-enable opcache
+
+# Configure PHP for production
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Add custom PHP configuration
+COPY docker/php/php-prod.ini $PHP_INI_DIR/conf.d/custom.ini
+
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+# Copy application files
+COPY . /var/www/html
+
+# Install application dependencies (production only, optimized)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+# Remove composer after installation to reduce image size
+RUN rm /usr/bin/composer
+
+# Build frontend assets (if needed)
+COPY --from=node:16-alpine /usr/lib /usr/lib
+COPY --from=node:16-alpine /usr/local/lib /usr/local/lib
+COPY --from=node:16-alpine /usr/local/include /usr/local/include
+COPY --from=node:16-alpine /usr/local/bin /usr/local/bin
+
+RUN npm install && npm run production && rm -rf node_modules
+
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Security: Remove sensitive files
+RUN rm -f .env.example .env.docker docker-setup.sh
+
+# Expose port 9000 for PHP-FPM
+EXPOSE 9000
+
+CMD ["php-fpm"]
