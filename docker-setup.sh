@@ -70,6 +70,11 @@ echo "📦 Installing Composer dependencies..."
 docker-compose run --rm app composer install --no-interaction --prefer-dist
 echo "✅ Composer dependencies installed"
 
+# Install predis for Redis support
+echo "📦 Installing predis/predis for Redis support..."
+docker-compose run --rm app composer require predis/predis --no-interaction
+echo "✅ Predis installed"
+
 # Generate APP_KEY if not set (after composer install)
 if ! grep -q "APP_KEY=base64:" .env; then
     echo "🔑 Generating application key..."
@@ -115,10 +120,12 @@ echo "   - Database: localhost:3306"
 echo "   - Redis: localhost:6379"
 echo ""
 echo "🔧 Next steps:"
-echo "   1. Run: docker-compose exec app php artisan setup-admin-user"
+echo "   1. Fix permissions: make permissions"
+echo "      (or: docker-compose exec -u root app chown -R www-data:www-data /var/www/html/storage)"
+echo "   2. Run: docker-compose exec app php artisan setup-admin-user"
 echo "      (to create your admin account)"
-echo "   2. Configure your social OAuth credentials in .env"
-echo "   3. Restart containers: docker-compose restart"
+echo "   3. Configure your social OAuth credentials in .env"
+echo "   4. Restart containers: docker-compose restart"
 echo ""
 echo "📚 Useful commands:"
 echo "   - View logs: docker-compose logs -f"

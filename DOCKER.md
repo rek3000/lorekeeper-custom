@@ -37,35 +37,69 @@ The Docker setup includes the following services:
 - **mailhog**: Local email testing tool
 - **node**: (optional) Node.js for asset compilation
 
-## 🚀 Quick Start
+## 🚀 Quick Start (From Scratch)
 
-### 1. Initial Setup
-
-Run the automated setup script:
+### Step 1: Clone the Repository
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/lorekeeper.git
+cd lorekeeper
+```
+
+### Step 2: Run the Automated Setup
+
+Run the setup script that handles everything automatically:
+
+```bash
+chmod +x docker-setup.sh
 ./docker-setup.sh
 ```
 
 This script will:
-- Create `.env` file from `.env.docker`
-- Generate application key
-- Start database and Redis
-- Run migrations
-- Seed initial data
-- Start all services
+- ✅ Create `.env` file from `.env.docker`
+- ✅ Build Docker images
+- ✅ Start database and Redis
+- ✅ Install Composer dependencies (including predis/predis)
+- ✅ Generate application key
+- ✅ Run migrations
+- ✅ Seed initial data
+- ✅ Create storage symlink
+- ✅ Cache configuration
+- ✅ Start all services
 
-### 2. Create Admin User
+**Note:** The setup process takes 5-10 minutes depending on your internet connection.
 
-After setup completes, create your admin account:
+### Step 3: Fix Permissions (Important!)
+
+After setup, fix file permissions to avoid log errors:
+
+```bash
+make permissions
+```
+
+Or manually:
+```bash
+docker-compose exec -u root app chown -R www-data:www-data /var/www/html/storage
+docker-compose exec -u root app chown -R www-data:www-data /var/www/html/bootstrap/cache
+docker-compose exec -u root app chmod -R 775 /var/www/html/storage
+docker-compose exec -u root app chmod -R 775 /var/www/html/bootstrap/cache
+```
+
+### Step 4: Create Admin User
+
+Create your admin account:
 
 ```bash
 docker-compose exec app php artisan setup-admin-user
 ```
 
-Follow the prompts to create your admin user.
+Follow the prompts to:
+- Enter admin username
+- Enter admin email
+- Set admin password
 
-### 3. Configure OAuth Credentials
+### Step 5: Configure OAuth Credentials (Optional but Recommended)
 
 Edit `.env` file and add your DeviantArt OAuth credentials:
 
@@ -75,16 +109,49 @@ DEVIANTART_SECRET=your_client_secret
 DEVIANTART_REDIRECT_URI=http://localhost/auth/callback/deviantart
 ```
 
+To get DeviantArt OAuth credentials:
+1. Go to https://www.deviantart.com/developers/
+2. Create a new application
+3. Copy the Client ID and Client Secret
+
 Then restart the services:
 
 ```bash
 docker-compose restart
 ```
 
-### 4. Access the Application
+### Step 6: Access the Application
+
+Your application is now running at:
 
 - **Web Application**: http://localhost
 - **MailHog UI**: http://localhost:8025 (for viewing test emails)
+- **MySQL**: localhost:3306
+- **Redis**: localhost:6379
+
+### Step 7: Verify Everything Works
+
+```bash
+# Check all services are running
+docker-compose ps
+
+# Check logs if any issues
+docker-compose logs -f app
+
+# Test the application by visiting http://localhost
+```
+
+## 🎯 Quick Start Using Make Commands
+
+If you have `make` installed, use these convenient shortcuts:
+
+```bash
+make setup       # Run initial setup
+make permissions # Fix file permissions
+make up          # Start all services
+make shell       # Access app container
+make logs        # View logs
+```
 
 ## 🔧 Manual Setup (Alternative)
 
@@ -116,8 +183,9 @@ sleep 10
 ### 3. Install Dependencies
 
 ```bash
-# Install Composer dependencies
+# Install Composer dependencies (including predis/predis for Redis)
 docker-compose exec app composer install
+docker-compose exec app composer require predis/predis
 
 # Generate application key
 docker-compose exec app php artisan key:generate
@@ -260,12 +328,51 @@ docker-compose exec db mysqladmin ping -h localhost -u root -p
 cat .env | grep DB_
 ```
 
-### Permission denied errors
+### "Class 'Predis\Client' not found" Error
+
+This means the Redis client library is missing:
 
 ```bash
-# Reset permissions
+# Install predis package
+docker-compose exec app composer require predis/predis
+
+# Clear config cache
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan cache:clear
+```
+
+### "NOAUTH Authentication required" Redis Error
+
+This happens when Redis password configuration is mismatched:
+
+**Solution 1: Remove Redis password (for local development)**
+1. Edit `docker-compose.yml` and remove the `command:` line under the redis service
+2. Recreate Redis container:
+```bash
+docker-compose stop redis
+docker-compose rm -f redis
+docker-compose up -d redis
+```
+
+**Solution 2: Set a proper Redis password**
+1. Edit `.env` and set `REDIS_PASSWORD=your_secure_password`
+2. Edit `docker-compose.yml` and change command to: `redis-server --requirepass your_secure_password`
+3. Restart services: `docker-compose restart`
+
+### Permission denied errors (Laravel log files)
+
+**Error:** `The stream or file "storage/logs/laravel.log" could not be opened`
+
+**Solution:**
+```bash
+# Fix permissions using make command
+make permissions
+
+# Or manually:
 docker-compose exec -u root app chown -R www-data:www-data /var/www/html/storage
 docker-compose exec -u root app chown -R www-data:www-data /var/www/html/bootstrap/cache
+docker-compose exec -u root app chmod -R 775 /var/www/html/storage
+docker-compose exec -u root app chmod -R 775 /var/www/html/bootstrap/cache
 ```
 
 ### Port already in use
