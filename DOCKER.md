@@ -1,13 +1,28 @@
 # Lorekeeper Docker Setup Guide
 
-This directory contains Docker configuration for running Lorekeeper locally with Docker and Docker Compose.
+This guide provides complete step-by-step instructions for running Lorekeeper from scratch using Docker.
 
 ## 📋 Prerequisites
+
+Before you begin, ensure you have:
 
 - Docker (version 20.10 or higher)
 - Docker Compose (version 2.0 or higher)
 - At least 4GB of free RAM
+- Git installed
 - DeviantArt OAuth credentials (required for authentication)
+
+### Installing Docker
+
+**Linux:**
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker $USER
+```
+
+**macOS/Windows:**
+Download and install Docker Desktop from https://www.docker.com/products/docker-desktop
 
 ## 🏗️ Architecture
 
